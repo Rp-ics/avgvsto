@@ -32,8 +32,21 @@ async fn main() -> anyhow::Result<()> {
 
     tracing::info!("AVGVSTO Server v{} starting", avgvsto_core::APP_VERSION);
 
-    let pool = db::create_pool(&config.database).await?;
+    let masked_url = config.database.url.split('@').last().unwrap_or("unknown");
+    tracing::info!("Database URL (host part): {masked_url}");
+    tracing::info!("Connecting to database...");
+    let pool = match db::create_pool(&config.database).await {
+        Ok(p) => {
+            tracing::info!("Database pool created");
+            p
+        }
+        Err(e) => {
+            tracing::error!("Database connection failed: {e}");
+            return Err(e.into());
+        }
+    };
 
+    tracing::info!("Running migrations...");
     sqlx::migrate!("../../migrations").run(&pool).await?;
     tracing::info!("Database migrations applied");
 
