@@ -25,7 +25,7 @@ pub fn get_usb_identifier(mount_path: &str) -> CoreResult<String> {
     ctx.update(b":");
 
     // Add volume info if available
-    if let Ok(_metadata) = std::fs::metadata(path) {
+    if let Ok(metadata) = std::fs::metadata(path) {
         #[cfg(unix)]
         {
             use std::os::unix::fs::MetadataExt;
