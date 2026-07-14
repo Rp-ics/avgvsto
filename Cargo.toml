@@ -75,7 +75,6 @@ metrics-exporter-prometheus = "0.16"
 
 # OpenAPI
 utoipa = { version = "5", features = ["axum_extras", "uuid", "chrono"] }
-utoipa-swagger-ui = { version = "8", features = ["axum"] }
 
 # OS keychain
 keyring = "3"

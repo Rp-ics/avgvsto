@@ -1,7 +1,7 @@
 # AVGVSTO Server — Multi-stage Docker build per Fly.io
 FROM rust:1.81-alpine AS builder
 
-RUN apk add --no-cache musl-dev pkgconfig openssl-dev
+RUN apk add --no-cache musl-dev pkgconfig openssl-dev curl
 
 WORKDIR /app
 COPY . .

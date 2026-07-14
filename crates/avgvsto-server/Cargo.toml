@@ -41,7 +41,6 @@ metrics-exporter-prometheus.workspace = true
 
 # OpenAPI
 utoipa.workspace = true
-utoipa-swagger-ui.workspace = true
 
 # Rate limiting
 governor.workspace = true
