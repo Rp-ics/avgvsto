@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVGVSTO USB — Hardware-Bound Encryption</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #00ff88; font-size: 2rem; margin-bottom: 0.5rem; }
+  h1 small { font-size: 1rem; color: #666; }
+  p { color: #888; margin-bottom: 2rem; }
+  .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .card h2 { color: #00ff88; font-size: 1.1rem; margin-bottom: 1rem; }
+  input, textarea, select { width: 100%; padding: 0.75rem; background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 8px; color: #e0e0e0; font-size: 0.9rem; margin-bottom: 0.75rem; }
+  input:focus, textarea:focus { outline: none; border-color: #00ff88; }
+  textarea { font-family: monospace; min-height: 80px; resize: vertical; }
+  button { background: #00ff88; color: #0a0a0a; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  button:hover { opacity: 0.8; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .output { background: #121212; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1rem; margin-top: 1rem; font-family: monospace; font-size: 0.8rem; white-space: pre-wrap; word-wrap: break-word; max-height: 200px; overflow-y: auto; }
+  .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .tab { padding: 0.5rem 1rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; color: #888; cursor: pointer; }
+  .tab.active { color: #00ff88; border-color: #00ff88; background: #1a2a1a; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .row { display: flex; gap: 0.75rem; }
+  .row > * { flex: 1; }
+  .badge { display: inline-block; padding: 0.25rem 0.5rem; background: #1a3a1a; color: #00ff88; border-radius: 4px; font-size: 0.75rem; margin-right: 0.5rem; }
+  .footer { text-align: center; color: #444; font-size: 0.8rem; margin-top: 3rem; }
+  .footer a { color: #666; }
+  pre { background: #121212; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  code { color: #00ff88; }
+  .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; }
+  .status-dot.online { background: #00ff88; }
+  .status-dot.offline { background: #ff4444; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>AVGVSTO <small>v0.1.0</small></h1>
+  <p>Hardware-bound AES-256-GCM encryption con chiave USB</p>
+
+  <div class="card" id="status-card">
+    <h2><span class="status-dot offline" id="status-dot"></span> Stato Server</h2>
+    <p id="server-status">Connessione in corso...</p>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-tab="encrypt">Crittografa</div>
+    <div class="tab" data-tab="decrypt">Decrittografa</div>
+    <div class="tab" data-tab="auth">Auth</div>
+    <div class="tab" data-tab="docs">API Docs</div>
+  </div>
+
+  <div class="tab-content active" id="tab-encrypt">
+    <div class="card">
+      <h2>Crittografa dati</h2>
+      <textarea id="encrypt-input" placeholder="Testo da crittografare..."></textarea>
+      <select id="encrypt-cipher">
+        <option value="aes-256-gcm">AES-256-GCM</option>
+        <option value="chacha20-poly1305">ChaCha20-Poly1305</option>
+      </select>
+      <input type="password" id="encrypt-passphrase" placeholder="Passphrase (opzionale)">
+      <div class="row">
+        <input type="text" id="encrypt-usb-path" placeholder="Percorso chiave USB (opzionale)">
+        <label style="display:flex;align-items:center;gap:0.5rem;color:#888">
+          <input type="checkbox" id="encrypt-duress"> Duress
+        </label>
+      </div>
+      <button onclick="encrypt()">Crittografa</button>
+      <div class="output" id="encrypt-output"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-decrypt">
+    <div class="card">
+      <h2>Decrittografa dati</h2>
+      <textarea id="decrypt-input" placeholder="Dati crittografati (base64)..."></textarea>
+      <input type="password" id="decrypt-passphrase" placeholder="Passphrase">
+      <input type="text" id="decrypt-usb-path" placeholder="Percorso chiave USB (opzionale)">
+      <button onclick="decrypt()">Decrittografa</button>
+      <div class="output" id="decrypt-output"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-auth">
+    <div class="card">
+      <h2>Registrati</h2>
+      <input type="text" id="reg-username" placeholder="Username">
+      <input type="password" id="reg-password" placeholder="Password">
+      <button onclick="register()">Registrati</button>
+      <div class="output" id="reg-output"></div>
+    </div>
+    <div class="card">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <div class="output" id="login-output"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-docs">
+    <div class="card">
+      <h2>API Documentation</h2>
+      <p>OpenAPI JSON: <code><span id="api-base"></span>/api/v1/openapi.json</code></p>
+      <pre>
+POST /api/v1/register    — Crea un account
+POST /api/v1/login       — Ottieni JWT
+POST /api/v1/refresh     — Rinnova il token
+POST /api/v1/encrypt     — Crittografa dati
+POST /api/v1/decrypt     — Decrittografa dati
+POST /api/v1/verify      — Verifica formato
+POST /api/v1/encrypt-file — Crittografa file (multipart)
+POST /api/v1/decrypt-file — Decrittografa file (multipart)
+POST /api/v1/keys/bind-usb — Associa chiave USB
+GET  /api/v1/keys        — Elenca chiavi USB
+GET  /api/v1/audit-log   — Log di audit (admin)
+GET  /api/v1/health      — Stato server
+GET  /api/v1/metrics     — Metriche
+GET  /api/v1/stats       — Statistiche
+GET  /api/v1/openapi.json — Specifica OpenAPI
+      </pre>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><a href="https://avgvstousb.com" target="_blank">avgvstousb.com</a> &middot; Open source &middot; AES-256-GCM &middot; ChaCha20-Poly1305</p>
+  </div>
+</div>
+
+<script>
+const API = 'https://api.avgvstousb.com/api/v1';
+document.getElementById('api-base').textContent = API.replace('/api/v1', '');
+
+let token = localStorage.getItem('avgvsto_token');
+
+async function api(method, path, body) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  const res = await fetch(API + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const data = await res.json();
+  if (res.status === 401 && token) { token = null; localStorage.removeItem('avgvsto_token'); }
+  return { ok: res.ok, status: res.status, data };
+}
+
+async function checkHealth() {
+  const dot = document.getElementById('status-dot');
+  const status = document.getElementById('server-status');
+  try {
+    const res = await fetch(API + '/health');
+    const data = await res.json();
+    if (res.ok) {
+      dot.className = 'status-dot online';
+      status.textContent = `Online — v${data.version} — Uptime: ${Math.floor(data.uptime_secs / 60)}m — DB: ${data.database}`;
+    } else {
+      dot.className = 'status-dot offline';
+      status.textContent = 'Server non disponibile';
+    }
+  } catch {
+    dot.className = 'status-dot offline';
+    status.textContent = 'Server non contattabile';
+  }
+}
+
+function output(id, ok, data) {
+  const el = document.getElementById(id);
+  el.textContent = ok ? JSON.stringify(data, null, 2) : `ERRORE ${data.code || ''}: ${data.error || JSON.stringify(data)}`;
+}
+
+async function register() {
+  const r = await api('POST', '/register', {
+    username: document.getElementById('reg-username').value,
+    password: document.getElementById('reg-password').value
+  });
+  output('reg-output', r.ok, r.data);
+}
+
+async function login() {
+  const r = await api('POST', '/login', {
+    username: document.getElementById('login-username').value,
+    password: document.getElementById('login-password').value
+  });
+  output('login-output', r.ok, r.data);
+  if (r.ok && r.data.access_token) {
+    token = r.data.access_token;
+    localStorage.setItem('avgvsto_token', token);
+  }
+}
+
+async function encrypt() {
+  const r = await api('POST', '/encrypt', {
+    data: document.getElementById('encrypt-input').value,
+    cipher: document.getElementById('encrypt-cipher').value,
+    passphrase: document.getElementById('encrypt-passphrase').value || undefined,
+    usb_key_path: document.getElementById('encrypt-usb-path').value || undefined,
+    use_duress: document.getElementById('encrypt-duress').checked || undefined
+  });
+  output('encrypt-output', r.ok, r.data);
+}
+
+async function decrypt() {
+  const r = await api('POST', '/decrypt', {
+    encrypted_data: document.getElementById('decrypt-input').value,
+    passphrase: document.getElementById('decrypt-passphrase').value,
+    usb_key_path: document.getElementById('decrypt-usb-path').value || undefined
+  });
+  output('decrypt-output', r.ok, r.data);
+}
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+setInterval(checkHealth, 30000);
+checkHealth();
+</script>
+</body>
+</html>

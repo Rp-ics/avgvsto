@@ -1,0 +1,23 @@
+# AVGVSTO Server — Fly.io Configuration
+app = "avgvsto-server"
+
+kill_signal = "SIGTERM"
+kill_timeout = "30s"
+
+[env]
+  AVGVSTO_SERVER__HOST = "0.0.0.0"
+  AVGVSTO_SERVER__PORT = "8080"
+  AVGVSTO_LOGGING__LEVEL = "info"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = "off"
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 100
+    soft_limit = 50

@@ -1,0 +1,87 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/avgvsto-core",
+    "crates/avgvsto-auth",
+    "crates/avgvsto-audit",
+    "crates/avgvsto-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Roy Merlo & RPX"]
+license = "MIT"
+repository = "https://github.com/RoyMerlo/AVGVSTO"
+description = "AVGVSTO Server — Hardware-bound AES-256-GCM encryption server with USB key enforcement"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Error handling
+thiserror = "2"
+
+# Logging / tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["json", "env-filter"] }
+tracing-appender = "0.2"
+
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio", "postgres", "uuid", "chrono", "json", "migrate"] }
+
+# UID generation
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# Date / time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Config
+figment = { version = "0.10", features = ["toml", "env", "test"] }
+
+# Random
+rand = "0.8"
+
+# Cryptography
+aes-gcm = "0.10"
+chacha20poly1305 = "0.10"
+argon2 = "0.5"
+ring = "0.17"
+
+# JWT
+jsonwebtoken = "9"
+
+# HTTP server
+axum = { version = "0.8", features = ["ws", "macros", "multipart"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "limit", "set-header", "timeout"] }
+axum-server = { version = "0.7", features = ["tls-rustls"] }
+
+# TLS
+rustls = "0.23"
+rustls-pemfile = "2"
+tokio-rustls = "0.26"
+
+# Rate limiting
+governor = "0.7"
+
+# Metrics
+metrics = "0.24"
+metrics-exporter-prometheus = "0.16"
+
+# OpenAPI
+utoipa = { version = "5", features = ["axum_extras", "uuid", "chrono"] }
+utoipa-swagger-ui = { version = "8", features = ["axum"] }
+
+# OS keychain
+keyring = "3"
+
+# Byte unit helpers
+bytesize = "1"
+
+# Encoding
+hex = "0.4"

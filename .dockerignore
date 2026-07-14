@@ -1,0 +1,8 @@
+target/
+.git/
+.github/
+.env
+*.md
+frontend/
+docker/
+docker-compose.yml

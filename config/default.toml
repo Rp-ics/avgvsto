@@ -1,0 +1,46 @@
+# AVGVSTO Server — Default Configuration
+
+[server]
+host = "127.0.0.1"
+port = 8443
+workers = 4
+allowed_origins = ["http://localhost:3000"]
+max_body_size = 104857600
+request_timeout_secs = 120
+
+[server.tls]
+enabled = false
+cert_path = ""
+key_path = ""
+
+[database]
+url = "postgresql://avgvsto:avgvsto@localhost:5432/avgvsto"
+max_connections = 20
+min_connections = 4
+connect_timeout_secs = 30
+idle_timeout_secs = 300
+
+[auth]
+jwt_secret = "CHANGE-ME-TO-A-SECURE-RANDOM-KEY-AT-LEAST-32-CHARS"
+access_token_expiry_secs = 900
+refresh_token_expiry_secs = 604800
+bcrypt_cost = 12
+max_login_attempts = 5
+login_window_secs = 300
+
+[crypto]
+default_cipher = "aes-256-gcm"
+pbkdf2_iterations = 1_000_000
+secure_delete_passes = 3
+
+[logging]
+level = "info"
+format = "json"
+directory = "/var/log/avgvsto"
+max_files = 30
+max_file_size_mb = 100
+
+[rate_limiting]
+enabled = true
+requests_per_minute = 60
+burst_size = 10

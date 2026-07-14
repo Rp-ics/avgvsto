@@ -1,0 +1,71 @@
+[package]
+name = "avgvsto-server"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "AVGVSTO Server binary — HTTP/WebSocket API for hardware-bound encryption"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+tracing-appender.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+rand.workspace = true
+tokio.workspace = true
+
+# Config
+figment.workspace = true
+
+# Database
+sqlx.workspace = true
+
+# HTTP server
+axum.workspace = true
+tower.workspace = true
+tower-http.workspace = true
+axum-server.workspace = true
+
+# TLS
+rustls.workspace = true
+rustls-pemfile.workspace = true
+tokio-rustls.workspace = true
+
+# Metrics
+metrics.workspace = true
+metrics-exporter-prometheus.workspace = true
+
+# OpenAPI
+utoipa.workspace = true
+utoipa-swagger-ui.workspace = true
+
+# Rate limiting
+governor.workspace = true
+
+# Upload handling
+multer = "3"
+
+# Keychain
+keyring.workspace = true
+
+# Encoding
+base64 = "0.22"
+hex.workspace = true
+
+# Async
+futures = "0.3"
+
+# Error handling
+anyhow = "1"
+
+# Internal crates
+avgvsto-core = { path = "../avgvsto-core" }
+avgvsto-auth = { path = "../avgvsto-auth" }
+avgvsto-audit = { path = "../avgvsto-audit" }
+
+[dev-dependencies]
+tracing-subscriber.workspace = true

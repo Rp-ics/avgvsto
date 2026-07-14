@@ -1,0 +1,12 @@
+# AVGVSTO Server — Development Configuration
+
+[server]
+host = "127.0.0.1"
+port = 8443
+
+[logging]
+level = "debug"
+format = "pretty"
+
+[rate_limiting]
+enabled = false

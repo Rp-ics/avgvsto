@@ -1,0 +1,40 @@
+[package]
+name = "avgvsto-auth"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Authentication module for AVGVSTO — JWT, Argon2id password hashing, OAuth2, rate limiting"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+rand.workspace = true
+
+# Cryptography
+argon2.workspace = true
+jsonwebtoken.workspace = true
+
+# Auth
+avgvsto-core = { path = "../avgvsto-core" }
+avgvsto-audit = { path = "../avgvsto-audit" }
+
+# OpenAPI
+utoipa = { version = "5", features = ["uuid", "chrono"] }
+
+# Database
+sqlx.workspace = true
+
+# Rate limiting
+governor.workspace = true
+
+# Hashing
+sha2 = "0.10"
+hex = "0.4"
+
+[dev-dependencies]
+tokio.workspace = true

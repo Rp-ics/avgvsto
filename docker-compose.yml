@@ -1,0 +1,41 @@
+# AVGVSTO Server — Docker Compose development environment
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: avgvsto
+      POSTGRES_PASSWORD: avgvsto
+      POSTGRES_DB: avgvsto
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U avgvsto"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8443:8443"
+    environment:
+      AVGVSTO_DATABASE__URL: "postgresql://avgvsto:avgvsto@postgres:5432/avgvsto"
+      AVGVSTO_SERVER__HOST: "0.0.0.0"
+      AVGVSTO_AUTH__JWT_SECRET: "change-me-in-production-use-a-strong-random-key"
+      AVGVSTO_LOGGING__LEVEL: "debug"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./config:/etc/avgvsto/config
+      - avgvsto_data:/var/lib/avgvsto
+
+volumes:
+  pgdata:
+  avgvsto_data:
