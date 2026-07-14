@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AVGVSTO USB — Crittografia hardware</title>
+<title>AVGVSTO USB — Hardware Encryption</title>
 <style>
 :root {
   --bg:        #05070a;
@@ -72,6 +72,14 @@ nav a:hover::after{width:100%;}
 .nav-dl{background:var(--accent);color:#0b0e1a!important;padding:8px 22px;border-radius:40px;font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;font-weight:700;}
 .nav-dl:hover{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent);box-shadow:0 0 30px var(--accent-gb);}
 .nav-dl::after{display:none!important;}
+
+/* Language switcher */
+.lang-switcher{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.6rem;letter-spacing:1.5px;margin:0 4px;}
+.lang-opt{color:var(--text-mid);cursor:pointer;text-decoration:none;transition:color 0.3s;padding:2px 4px;}
+.lang-opt::after{display:none!important;}
+.lang-opt:hover{color:var(--accent);}
+.lang-opt.active{color:var(--accent);font-weight:700;}
+.lang-sep{color:var(--border2);font-size:0.5rem;padding:0 1px;}
 
 /* Webapp nav link */
 .nav-webapp{color:var(--accent)!important;}
@@ -459,15 +467,20 @@ footer{
     <span class="logo-badge">OPEN SOURCE</span>
   </a>
   <nav>
-    <a href="#architecture">Architettura</a>
-    <a href="#features">Funzionalità</a>
-    <a href="#gallery">Interfaccia</a>
-    <a href="#whitepaper">Whitepaper</a>
-    <a href="#tools">Tools</a>
-    <a href="#webapp" class="nav-webapp"><i class="fas fa-globe"></i> Web App</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://github.com/RoyMerlo/AVGVSTO-USB" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-    <a href="#download" class="nav-dl"><i class="fas fa-download"></i> Download</a>
+    <a href="#architecture" data-i18n="nav_architecture">Architecture</a>
+    <a href="#features" data-i18n="nav_features">Features</a>
+    <a href="#gallery" data-i18n="nav_gallery">Interface</a>
+    <a href="#whitepaper" data-i18n="nav_whitepaper">Whitepaper</a>
+    <a href="#tools" data-i18n="nav_tools">Tools</a>
+    <a href="#webapp" class="nav-webapp"><i class="fas fa-globe"></i> <span data-i18n="nav_webapp">Web App</span></a>
+    <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="https://github.com/RoyMerlo/AVGVSTO-USB" target="_blank" rel="noopener"><i class="fab fa-github"></i> <span data-i18n="nav_github">GitHub</span></a>
+    <span class="lang-switcher">
+      <a href="#" class="lang-opt active" data-lang="en" onclick="switchLang('en');return false;">EN</a>
+      <span class="lang-sep">|</span>
+      <a href="#" class="lang-opt" data-lang="it" onclick="switchLang('it');return false;">IT</a>
+    </span>
+    <a href="#download" class="nav-dl"><i class="fas fa-download"></i> <span data-i18n="nav_download">Download</span></a>
   </nav>
 </header>
 
@@ -476,37 +489,37 @@ footer{
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-label"><span class="bar"></span> FULLY OPEN SOURCE · GPLv3 · HARDWARE-BOUND</div>
+    <div class="hero-label"><span class="bar"></span> <span data-i18n="hero_label">FULLY OPEN SOURCE · GPLv3 · HARDWARE-BOUND</span></div>
     <h1>
-      <span class="glitch" data-text="HARDWARE-BOUND">HARDWARE-BOUND</span><br>
-      <span class="hl">FILE ENCRYPTION</span><br>
-      <span class="dim">OPEN SOURCE.</span>
+      <span class="glitch" data-i18n-glitch="hero_glitch" data-text="HARDWARE-BOUND">HARDWARE-BOUND</span><br>
+      <span class="hl" data-i18n="hero_hl">FILE ENCRYPTION</span><br>
+      <span class="dim" data-i18n="hero_dim">OPEN SOURCE.</span>
     </h1>
-    <p class="hero-desc">
+    <p class="hero-desc" data-i18n-html="hero_desc">
       AVGVSTO fuses your password with the physical fingerprint of any USB drive.
       Without the exact hardware, decryption is <strong>impossible</strong> — even with the correct password.
       Anti‑bruteforce. Duress mode. Cascade ciphers. Zero telemetry. Zero cloud.
     </p>
     <div class="hero-actions">
-      <a href="#download" class="btn btn-primary"><i class="fas fa-download"></i> Download Free</a>
-      <a href="https://github.com/RoyMerlo/AVGVSTO-USB" class="btn btn-outline" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a>
-      <a href="https://github.com/RoyMerlo" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-user-astronaut"></i> Roy</a>
-      <a href="https://github.com/Rp-ics" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-user-astronaut"></i> RPX</a>
+      <a href="#download" class="btn btn-primary"><i class="fas fa-download"></i> <span data-i18n="hero_btn_download">Download Free</span></a>
+      <a href="https://github.com/RoyMerlo/AVGVSTO-USB" class="btn btn-outline" target="_blank" rel="noopener"><i class="fab fa-github"></i> <span data-i18n="hero_btn_source">Source Code</span></a>
+      <a href="https://github.com/RoyMerlo" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-user-astronaut"></i> <span data-i18n="hero_btn_roy">Roy</span></a>
+      <a href="https://github.com/Rp-ics" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-user-astronaut"></i> <span data-i18n="hero_btn_rpx">RPX</span></a>
     </div>
     <div class="hero-terminal">
       <div class="terminal-bar">
         <div class="dot dot-r"></div>
         <div class="dot dot-y"></div>
         <div class="dot dot-g"></div>
-        <span class="terminal-label">AVGVSTO v3.1.3 — AES-256-GCM · ChaCha20 · CASCADE</span>
+        <span class="terminal-label" data-i18n="hero_terminal_label">AVGVSTO v3.1.3 — AES-256-GCM · ChaCha20 · CASCADE</span>
       </div>
       <div class="terminal-body">
-        <div><span class="t-dim">$</span> <span class="t-acc">avgvsto</span> encrypt <span class="t-gold">./classified_docs/</span> --usb /dev/sdb1</div>
-        <div><span class="t-dim">  [✓] USB Hardware Fingerprint verified — ID: 3a8f2c...</span></div>
-        <div><span class="t-dim">  [✓] PBKDF2 key derivation — 1,000,000 iterations</span></div>
-        <div><span class="t-acc">  [✓] AES-256-GCM → ChaCha20-Poly1305 cascade applied</span></div>
-        <div><span class="t-dim">  [✓] 47 file(s) encrypted. Originals shredded (3-pass DoD).</span></div>
-        <div><span class="t-acc">  [✓] Audit log entry signed and appended.</span></div>
+        <div data-i18n-html="term_l1"><span class="t-dim">$</span> <span class="t-acc">avgvsto</span> encrypt <span class="t-gold">./classified_docs/</span> --usb /dev/sdb1</div>
+        <div data-i18n-html="term_l2"><span class="t-dim">  [✓] USB Hardware Fingerprint verified — ID: 3a8f2c...</span></div>
+        <div data-i18n-html="term_l3"><span class="t-dim">  [✓] PBKDF2 key derivation — 1,000,000 iterations</span></div>
+        <div data-i18n-html="term_l4"><span class="t-acc">  [✓] AES-256-GCM → ChaCha20-Poly1305 cascade applied</span></div>
+        <div data-i18n-html="term_l5"><span class="t-dim">  [✓] 47 file(s) encrypted. Originals shredded (3-pass DoD).</span></div>
+        <div data-i18n-html="term_l6"><span class="t-acc">  [✓] Audit log entry signed and appended.</span></div>
         <div>&nbsp;</div>
         <div><span class="t-dim">$</span> <span class="cursor"></span></div>
       </div>
@@ -517,89 +530,89 @@ footer{
 <!-- STATS -->
 <div class="statsbar">
   <div class="statsbar-grid">
-    <div class="stat-item"><span class="stat-val" data-target="1000000">0</span><span class="stat-lbl">PBKDF2 Iterations</span></div>
-    <div class="stat-item"><span class="stat-val">256/512</span><span class="stat-lbl">Effective Key Bits</span></div>
-    <div class="stat-item"><span class="stat-val">100%</span><span class="stat-lbl">Open Source · Auditable</span></div>
-    <div class="stat-item"><span class="stat-val">3</span><span class="stat-lbl">Platforms: Win / Mac / Linux</span></div>
+    <div class="stat-item"><span class="stat-val" data-target="1000000">0</span><span class="stat-lbl" data-i18n="stat_pbkdf2">PBKDF2 Iterations</span></div>
+    <div class="stat-item"><span class="stat-val">256/512</span><span class="stat-lbl" data-i18n="stat_key_bits">Effective Key Bits</span></div>
+    <div class="stat-item"><span class="stat-val">100%</span><span class="stat-lbl" data-i18n="stat_oss">Open Source · Auditable</span></div>
+    <div class="stat-item"><span class="stat-val">3</span><span class="stat-lbl" data-i18n="stat_platforms">Platforms: Win / Mac / Linux</span></div>
   </div>
 </div>
 
 <!-- ARCHITECTURE -->
 <section id="architecture" class="section">
-  <span class="section-label reveal">CRYPTO CORE</span>
-  <h2 class="section-title reveal">Radical transparency,<br><em class="glitch" data-text="military‑grade security" style="font-style:normal;color:var(--accent);">military‑grade security</em></h2>
-  <p class="section-sub reveal">Every cryptographic decision is visible, auditable, and reproducible. No black boxes.</p>
+  <span class="section-label reveal" data-i18n="arch_label">CRYPTO CORE</span>
+  <h2 class="section-title reveal" data-i18n-html="arch_title">Radical transparency,<br><em class="glitch" data-i18n-glitch="arch_title2" data-text="military‑grade security" style="font-style:normal;color:var(--accent);">military‑grade security</em></h2>
+  <p class="section-sub reveal" data-i18n="arch_sub">Every cryptographic decision is visible, auditable, and reproducible. No black boxes.</p>
   <div class="arch-grid reveal">
-    <div class="arch-card"><span class="icon"><i class="fas fa-microchip"></i></span><h3>USB HARDWARE FINGERPRINT</h3><p><code>serial + volumeID</code> merged into key via PBKDF2. Any USB works, cloning fails.</p><ul><li><i class="fas fa-lock"></i> 128-bit hardware salt</li><li><i class="fas fa-ban"></i> Clone / emulation resistant</li></ul></div>
-    <div class="arch-card"><span class="icon"><i class="fas fa-cogs"></i></span><h3>AES-256-GCM / CHACHA20</h3><p>Authenticated encryption, indistinguishable from random. Choose your cipher or cascade both.</p><ul><li><i class="fas fa-check"></i> AES-NI + AVX2 acceleration</li><li><i class="fas fa-check"></i> Poly1305 MAC authentication</li></ul></div>
-    <div class="arch-card"><span class="icon"><i class="fas fa-hourglass-end"></i></span><h3>ANTI‑BRUTEFORCE ENGINE</h3><p>Exponential backoff up to 1 month. Hardware‑bound lockout, no reset bypass.</p><ul><li><i class="fas fa-skull"></i> Progressive delay: 5s → 1 month</li><li><i class="fas fa-shield"></i> Persistent across restarts</li></ul></div>
-    <div class="arch-card"><span class="icon"><i class="fas fa-mask"></i></span><h3>PLAUSIBLE DENIABILITY</h3><p>Duress password reveals a decoy. Real data is mathematically hidden in the same container.</p><ul><li><i class="fas fa-user-secret"></i> Two independent key trees</li><li><i class="fas fa-ghost"></i> Forensically indistinguishable</li></ul></div>
-    <div class="arch-card"><span class="icon"><i class="fas fa-layer-group"></i></span><h3>CASCADE ENCRYPTION</h3><p>AES‑256 → ChaCha20 with independent keys. Future-proof double-layer defense.</p><ul><li><i class="fas fa-shield"></i> 512‑bit effective strength</li><li><i class="fas fa-flask"></i> Post‑quantum resilient design</li></ul></div>
-    <div class="arch-card"><span class="icon"><i class="fas fa-scroll"></i></span><h3>TAMPER‑PROOF AUDIT</h3><p>Immutable signed logs of every access event. HMAC-SHA256 per entry. No deletion possible.</p><ul><li><i class="fas fa-signature"></i> Forensic integrity chain</li><li><i class="fas fa-history"></i> Business: full audit trail</li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-microchip"></i></span><h3 data-i18n="arch_card1_title">USB HARDWARE FINGERPRINT</h3><p data-i18n="arch_card1_desc"><code>serial + volumeID</code> merged into key via PBKDF2. Any USB works, cloning fails.</p><ul><li><i class="fas fa-lock"></i> <span data-i18n="arch_card1_li1">128-bit hardware salt</span></li><li><i class="fas fa-ban"></i> <span data-i18n="arch_card1_li2">Clone / emulation resistant</span></li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-cogs"></i></span><h3 data-i18n="arch_card2_title">AES-256-GCM / CHACHA20</h3><p data-i18n="arch_card2_desc">Authenticated encryption, indistinguishable from random. Choose your cipher or cascade both.</p><ul><li><i class="fas fa-check"></i> <span data-i18n="arch_card2_li1">AES-NI + AVX2 acceleration</span></li><li><i class="fas fa-check"></i> <span data-i18n="arch_card2_li2">Poly1305 MAC authentication</span></li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-hourglass-end"></i></span><h3 data-i18n="arch_card3_title">ANTI‑BRUTEFORCE ENGINE</h3><p data-i18n="arch_card3_desc">Exponential backoff up to 1 month. Hardware‑bound lockout, no reset bypass.</p><ul><li><i class="fas fa-skull"></i> <span data-i18n="arch_card3_li1">Progressive delay: 5s → 1 month</span></li><li><i class="fas fa-shield"></i> <span data-i18n="arch_card3_li2">Persistent across restarts</span></li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-mask"></i></span><h3 data-i18n="arch_card4_title">PLAUSIBLE DENIABILITY</h3><p data-i18n="arch_card4_desc">Duress password reveals a decoy. Real data is mathematically hidden in the same container.</p><ul><li><i class="fas fa-user-secret"></i> <span data-i18n="arch_card4_li1">Two independent key trees</span></li><li><i class="fas fa-ghost"></i> <span data-i18n="arch_card4_li2">Forensically indistinguishable</span></li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-layer-group"></i></span><h3 data-i18n="arch_card5_title">CASCADE ENCRYPTION</h3><p data-i18n="arch_card5_desc">AES‑256 → ChaCha20 with independent keys. Future-proof double-layer defense.</p><ul><li><i class="fas fa-shield"></i> <span data-i18n="arch_card5_li1">512‑bit effective strength</span></li><li><i class="fas fa-flask"></i> <span data-i18n="arch_card5_li2">Post‑quantum resilient design</span></li></ul></div>
+    <div class="arch-card"><span class="icon"><i class="fas fa-scroll"></i></span><h3 data-i18n="arch_card6_title">TAMPER‑PROOF AUDIT</h3><p data-i18n="arch_card6_desc">Immutable signed logs of every access event. HMAC-SHA256 per entry. No deletion possible.</p><ul><li><i class="fas fa-signature"></i> <span data-i18n="arch_card6_li1">Forensic integrity chain</span></li><li><i class="fas fa-history"></i> <span data-i18n="arch_card6_li2">Business: full audit trail</span></li></ul></div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section id="features" class="section" style="background:var(--bg2);max-width:100%;padding:110px 5%;">
   <div style="max-width:1300px;margin:0 auto;">
-    <span class="section-label reveal">WHAT YOU GET</span>
-    <h2 class="section-title reveal">Everything included.<br>Forever free &amp; open.</h2>
-    <p class="section-sub reveal">No paywalls. No feature gates. No artificial tiers. Full cryptographic power in your hands.</p>
+    <span class="section-label reveal" data-i18n="feat_label">WHAT YOU GET</span>
+    <h2 class="section-title reveal" data-i18n-html="feat_title">Everything included.<br>Forever free &amp; open.</h2>
+    <p class="section-sub reveal" data-i18n="feat_sub">No paywalls. No feature gates. No artificial tiers. Full cryptographic power in your hands.</p>
     <div class="feat-grid reveal">
-      <div class="feat-card"><i class="fas fa-infinity"></i><h4>No artificial limits</h4><p>Unlimited files, unlimited batches, unlimited users. The full suite is yours.</p></div>
-      <div class="feat-card"><i class="fas fa-terminal"></i><h4>CLI + GUI duality</h4><p>Full command-line automation for power users; polished GUI for everyone else.</p></div>
-      <div class="feat-card"><i class="fas fa-usb"></i><h4>Portable mode</h4><p>Run directly from any USB stick. Zero installation, ideal for air-gapped systems.</p></div>
-      <div class="feat-card"><i class="fas fa-code-branch"></i><h4>Fully auditable source</h4><p>Every primitive visible. Build deterministically. Verify with confidence. Fork freely.</p></div>
-      <div class="feat-card"><i class="fas fa-shield-virus"></i><h4>Secure deletion</h4><p>3-pass DoD-compliant shredding of temp files and original plaintext after encryption.</p></div>
-      <div class="feat-card"><i class="fas fa-globe-slash"></i><h4>100% offline operation</h4><p>No cloud, no telemetry, no activation servers. Your data never leaves your hardware.</p></div>
+      <div class="feat-card"><i class="fas fa-infinity"></i><h4 data-i18n="feat_card1_title">No artificial limits</h4><p data-i18n="feat_card1_desc">Unlimited files, unlimited batches, unlimited users. The full suite is yours.</p></div>
+      <div class="feat-card"><i class="fas fa-terminal"></i><h4 data-i18n="feat_card2_title">CLI + GUI duality</h4><p data-i18n="feat_card2_desc">Full command-line automation for power users; polished GUI for everyone else.</p></div>
+      <div class="feat-card"><i class="fas fa-usb"></i><h4 data-i18n="feat_card3_title">Portable mode</h4><p data-i18n="feat_card3_desc">Run directly from any USB stick. Zero installation, ideal for air-gapped systems.</p></div>
+      <div class="feat-card"><i class="fas fa-code-branch"></i><h4 data-i18n="feat_card4_title">Fully auditable source</h4><p data-i18n="feat_card4_desc">Every primitive visible. Build deterministically. Verify with confidence. Fork freely.</p></div>
+      <div class="feat-card"><i class="fas fa-shield-virus"></i><h4 data-i18n="feat_card5_title">Secure deletion</h4><p data-i18n="feat_card5_desc">3-pass DoD-compliant shredding of temp files and original plaintext after encryption.</p></div>
+      <div class="feat-card"><i class="fas fa-globe-slash"></i><h4 data-i18n="feat_card6_title">100% offline operation</h4><p data-i18n="feat_card6_desc">No cloud, no telemetry, no activation servers. Your data never leaves your hardware.</p></div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery" class="section">
-  <span class="section-label reveal">INTERFACE · NO BLOAT</span>
-  <h2 class="section-title reveal">Minimal. Direct. Effective.</h2>
-  <p class="section-sub reveal">Click any screenshot to inspect the interface in full detail.</p>
+  <span class="section-label reveal" data-i18n="gallery_label">INTERFACE · NO BLOAT</span>
+  <h2 class="section-title reveal" data-i18n="gallery_title">Minimal. Direct. Effective.</h2>
+  <p class="section-sub reveal" data-i18n="gallery_sub">Click any screenshot to inspect the interface in full detail.</p>
   <div class="gallery-grid reveal">
-    <figure class="gallery-item"><img src="https://i.ibb.co/PzMxL2Zk/Screenshot-2026-03-12-152401.png" alt="main dashboard" loading="lazy"><figcaption>Main Dashboard</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/rKJwFLgL/Screenshot-2026-03-11-122340.png" alt="simple mode" loading="lazy"><figcaption>Simple mode</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/XrpzVFKh/Screenshot-2026-03-12-111029.png" alt="usb analysis" loading="lazy"><figcaption>USB Analyzer</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/MDpRKZQm/Screenshot-2026-03-12-182156.png" alt="attempt limits" loading="lazy"><figcaption>Attempt Limits</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/q3F9WqXH/Screenshot-2026-03-12-175731.png" alt="encrypt view" loading="lazy"><figcaption>Encryption View</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/Bbjtt0f/Screenshot-2026-03-12-180232.png" alt="progress" loading="lazy"><figcaption>Progress</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/s9wT2jyK/Screenshot-2026-03-12-180408.png" alt="bruteforce lockout" loading="lazy"><figcaption>Bruteforce Lockout</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/tPkbxbQw/Screenshot-2026-03-12-181129.png" alt="integrity analyzer" loading="lazy"><figcaption>Integrity Analyzer</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/3yTRtbYK/Screenshot-2026-03-12-181612.png" alt="action selection" loading="lazy"><figcaption>Action Selection</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/jP3Ld5ms/Screenshot-2026-03-12-181717.png" alt="duress ui" loading="lazy"><figcaption>Duress UI</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/1tLN28P0/Screenshot-2026-03-12-181447.png" alt="usb cleaner" loading="lazy"><figcaption>USB Cleaner</figcaption></figure>
-    <figure class="gallery-item"><img src="https://i.ibb.co/Tx03CZnG/Screenshot-2026-03-12-181409.png" alt="built-in help" loading="lazy"><figcaption>Built‑in Help</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/PzMxL2Zk/Screenshot-2026-03-12-152401.png" data-i18n-alt="gallery_alt1" alt="main dashboard" loading="lazy"><figcaption data-i18n="gallery_cap1">Main Dashboard</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/rKJwFLgL/Screenshot-2026-03-11-122340.png" data-i18n-alt="gallery_alt2" alt="simple mode" loading="lazy"><figcaption data-i18n="gallery_cap2">Simple mode</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/XrpzVFKh/Screenshot-2026-03-12-111029.png" data-i18n-alt="gallery_alt3" alt="usb analysis" loading="lazy"><figcaption data-i18n="gallery_cap3">USB Analyzer</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/MDpRKZQm/Screenshot-2026-03-12-182156.png" data-i18n-alt="gallery_alt4" alt="attempt limits" loading="lazy"><figcaption data-i18n="gallery_cap4">Attempt Limits</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/q3F9WqXH/Screenshot-2026-03-12-175731.png" data-i18n-alt="gallery_alt5" alt="encrypt view" loading="lazy"><figcaption data-i18n="gallery_cap5">Encryption View</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/Bbjtt0f/Screenshot-2026-03-12-180232.png" data-i18n-alt="gallery_alt6" alt="progress" loading="lazy"><figcaption data-i18n="gallery_cap6">Progress</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/s9wT2jyK/Screenshot-2026-03-12-180408.png" data-i18n-alt="gallery_alt7" alt="bruteforce lockout" loading="lazy"><figcaption data-i18n="gallery_cap7">Bruteforce Lockout</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/tPkbxbQw/Screenshot-2026-03-12-181129.png" data-i18n-alt="gallery_alt8" alt="integrity analyzer" loading="lazy"><figcaption data-i18n="gallery_cap8">Integrity Analyzer</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/3yTRtbYK/Screenshot-2026-03-12-181612.png" data-i18n-alt="gallery_alt9" alt="action selection" loading="lazy"><figcaption data-i18n="gallery_cap9">Action Selection</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/jP3Ld5ms/Screenshot-2026-03-12-181717.png" data-i18n-alt="gallery_alt10" alt="duress ui" loading="lazy"><figcaption data-i18n="gallery_cap10">Duress UI</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/1tLN28P0/Screenshot-2026-03-12-181447.png" data-i18n-alt="gallery_alt11" alt="usb cleaner" loading="lazy"><figcaption data-i18n="gallery_cap11">USB Cleaner</figcaption></figure>
+    <figure class="gallery-item"><img src="https://i.ibb.co/Tx03CZnG/Screenshot-2026-03-12-181409.png" data-i18n-alt="gallery_alt12" alt="built-in help" loading="lazy"><figcaption data-i18n="gallery_cap12">Built‑in Help</figcaption></figure>
   </div>
 </section>
 
 <!-- TOOLS -->
 <section id="tools" class="tools-section">
   <div style="max-width:1300px;margin:0 auto;">
-    <span class="section-label reveal">TOOLS ECOSYSTEM</span>
-    <h2 class="section-title reveal">Essential utilities<br><span style="color:var(--accent);">built for privacy &amp; speed</span></h2>
+    <span class="section-label reveal" data-i18n="tools_label">TOOLS ECOSYSTEM</span>
+    <h2 class="section-title reveal" data-i18n-html="tools_title">Essential utilities<br><span style="color:var(--accent);">built for privacy &amp; speed</span></h2>
     <div class="tools-grid reveal">
       <div class="tools-card">
         <i class="fas fa-qrcode"></i>
-        <h3>QR Code Studio</h3>
-        <p>Transform any text, link, or data into a scannable QR code. Choose permanent or temporary codes with custom lifespan. Download as high-res PNG.</p>
-        <a href="QRGen/index.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.65rem;" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Launch QR Generator →</a>
+        <h3 data-i18n="tools_card1_title">QR Code Studio</h3>
+        <p data-i18n="tools_card1_desc">Transform any text, link, or data into a scannable QR code. Choose permanent or temporary codes with custom lifespan. Download as high-res PNG.</p>
+        <a href="QRGen/index.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.65rem;" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="tools_card1_btn">Launch QR Generator →</span></a>
       </div>
       <div class="tools-card">
         <i class="fas fa-comments"></i>
-        <h3>Temporary Chat</h3>
-        <p>Ephemeral, self-destructing messages. No logs, no tracking. Create a room, share the link, and chat privately. Messages disappear after being read.</p>
-        <a href="TempChat/index.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.65rem;" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Launch Temp Chat →</a>
+        <h3 data-i18n="tools_card2_title">Temporary Chat</h3>
+        <p data-i18n="tools_card2_desc">Ephemeral, self-destructing messages. No logs, no tracking. Create a room, share the link, and chat privately. Messages disappear after being read.</p>
+        <a href="TempChat/index.html" class="btn btn-primary" style="padding:10px 24px;font-size:0.65rem;" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="tools_card2_btn">Launch Temp Chat →</span></a>
       </div>
       <div class="tools-card" style="opacity:0.85;">
         <i class="fas fa-file-contract"></i>
-        <h3>Integrity Verifier</h3>
-        <p>SHA-3 & HMAC checksums for any file. Verify file integrity with cryptographic hashing.</p>
-        <button class="btn btn-ghost" disabled>Coming soon</button>
+        <h3 data-i18n="tools_card3_title">Integrity Verifier</h3>
+        <p data-i18n="tools_card3_desc">SHA-3 & HMAC checksums for any file. Verify file integrity with cryptographic hashing.</p>
+        <button class="btn btn-ghost" data-i18n="tools_card3_btn" disabled>Coming soon</button>
       </div>
     </div>
   </div>
@@ -608,14 +621,14 @@ footer{
 <!-- WHITEPAPER -->
 <section id="whitepaper" class="section" style="background:var(--bg2);max-width:100%;padding:110px 5%;">
   <div style="max-width:1300px;margin:0 auto;">
-    <span class="section-label reveal">FULL TECHNICAL ARCHITECTURE</span>
-    <h2 class="section-title reveal">AVGVSTO 3.1.3 — Official Cryptography Whitepaper</h2>
+    <span class="section-label reveal" data-i18n="wp_label">FULL TECHNICAL ARCHITECTURE</span>
+    <h2 class="section-title reveal" data-i18n="wp_title">AVGVSTO 3.1.3 — Official Cryptography Whitepaper</h2>
     <div class="reveal pdf-wrap">
       <embed class="pdf-embed" src="files/avgv.pdf" type="application/pdf">
       <div style="margin-top:18px;text-align:right;font-family:var(--mono);font-size:0.6rem;">
-        <a href="files/avgv.pdf" download style="color:var(--accent);text-decoration:underline;">📄 Download PDF</a>
+        <a href="files/avgv.pdf" download style="color:var(--accent);text-decoration:underline;">📄 <span data-i18n="wp_download">Download PDF</span></a>
         &nbsp;·&nbsp;
-        <a href="https://github.com/RoyMerlo/AVGVSTO-USB/tree/main/docs" target="_blank" rel="noopener" style="color:var(--accent);">📖 Read on GitHub</a>
+        <a href="https://github.com/RoyMerlo/AVGVSTO-USB/tree/main/docs" target="_blank" rel="noopener" style="color:var(--accent);">📖 <span data-i18n="wp_read">Read on GitHub</span></a>
       </div>
     </div>
   </div>
@@ -627,64 +640,64 @@ footer{
   <div class="dl-glow-r"></div>
   <div class="dl-inner">
     <div class="dl-header reveal">
-      <span class="section-label">GET AVGVSTO FREE</span>
-      <h2 class="dl-title">Download for your<br><em>platform.</em></h2>
-      <p class="dl-subtitle">Pre-compiled · GPLv3 · No registration · No telemetry</p>
+      <span class="section-label" data-i18n="dl_label">GET AVGVSTO FREE</span>
+      <h2 class="dl-title" data-i18n-html="dl_title">Download for your<br><em>platform.</em></h2>
+      <p class="dl-subtitle" data-i18n="dl_subtitle">Pre-compiled · GPLv3 · No registration · No telemetry</p>
     </div>
     <div class="dl-cards reveal">
       <a href="https://www.avgvstousb.com/AVGVSTO_WINDOWS_Setup.zip" class="dl-card dl-card-win" download>
         <div class="dl-card-os">
           <i class="fab fa-windows"></i>
           <div>
-            <div class="dl-card-os-name">WINDOWS</div>
-            <div class="dl-card-os-ver">Windows 10 / 11 · x64</div>
+            <div class="dl-card-os-name" data-i18n="dl_card1_name">WINDOWS</div>
+            <div class="dl-card-os-ver" data-i18n="dl_card1_ver">Windows 10 / 11 · x64</div>
           </div>
         </div>
-        <p class="dl-card-desc">Native executable. No installation required — run directly or deploy as portable from USB. Includes GUI + CLI.</p>
+        <p class="dl-card-desc" data-i18n="dl_card1_desc">Native executable. No installation required — run directly or deploy as portable from USB. Includes GUI + CLI.</p>
         <div class="dl-card-meta">
           <span class="dl-card-format">.ZIP · .EXE</span>
-          <span class="dl-btn"><i class="fas fa-download"></i> Download</span>
+          <span class="dl-btn"><i class="fas fa-download"></i> <span data-i18n="dl_card_btn">Download</span></span>
         </div>
       </a>
       <a href="https://www.avgvstousb.com/AVGVSTOUSBMacOS.zip" class="dl-card dl-card-mac" download>
         <div class="dl-card-os">
           <i class="fab fa-apple"></i>
           <div>
-            <div class="dl-card-os-name">macOS</div>
-            <div class="dl-card-os-ver">macOS 12 Monterey+ · ARM/Intel</div>
+            <div class="dl-card-os-name" data-i18n="dl_card2_name">macOS</div>
+            <div class="dl-card-os-ver" data-i18n="dl_card2_ver">macOS 12 Monterey+ · ARM/Intel</div>
           </div>
         </div>
-        <p class="dl-card-desc">Universal binary — runs on both Apple Silicon and Intel Macs. Full feature parity. Native dark mode.</p>
+        <p class="dl-card-desc" data-i18n="dl_card2_desc">Universal binary — runs on both Apple Silicon and Intel Macs. Full feature parity. Native dark mode.</p>
         <div class="dl-card-meta">
           <span class="dl-card-format">.ZIP · .APP</span>
-          <span class="dl-btn"><i class="fas fa-download"></i> Download</span>
+          <span class="dl-btn"><i class="fas fa-download"></i> <span data-i18n="dl_card_btn">Download</span></span>
         </div>
       </a>
       <a href="https://www.avgvstousb.com/AVGVSTO-3.1.3-x86_64.AppImage" class="dl-card dl-card-linux" download>
         <div class="dl-card-os">
           <i class="fab fa-linux"></i>
           <div>
-            <div class="dl-card-os-name">LINUX</div>
-            <div class="dl-card-os-ver">Ubuntu 20.04+ · Debian · Arch</div>
+            <div class="dl-card-os-name" data-i18n="dl_card3_name">LINUX</div>
+            <div class="dl-card-os-ver" data-i18n="dl_card3_ver">Ubuntu 20.04+ · Debian · Arch</div>
           </div>
         </div>
-        <p class="dl-card-desc">AppImage — runs on any modern distro without installation. Full CLI available for headless deployments.</p>
+        <p class="dl-card-desc" data-i18n="dl_card3_desc">AppImage — runs on any modern distro without installation. Full CLI available for headless deployments.</p>
         <div class="dl-card-meta">
           <span class="dl-card-format">.ZIP · .PY</span>
-          <span class="dl-btn"><i class="fas fa-download"></i> Download</span>
+          <span class="dl-btn"><i class="fas fa-download"></i> <span data-i18n="dl_card_btn">Download</span></span>
         </div>
       </a>
     </div>
     <div class="dl-bottom reveal">
       <div class="dl-bottom-left">
         <a href="https://github.com/RoyMerlo/AVGVSTO-USB/releases" class="btn btn-outline" target="_blank" rel="noopener" style="padding:10px 22px;font-size:0.6rem;">
-          <i class="fab fa-github"></i> Latest Release on GitHub
+          <i class="fab fa-github"></i> <span data-i18n="dl_btn_releases">Latest Release on GitHub</span>
         </a>
         <a href="https://github.com/RoyMerlo/AVGVSTO-USB" class="btn btn-ghost" target="_blank" rel="noopener" style="padding:10px 22px;font-size:0.6rem;">
-          <i class="fas fa-code"></i> Build from Source
+          <i class="fas fa-code"></i> <span data-i18n="dl_btn_source">Build from Source</span>
         </a>
       </div>
-      <div class="dl-bottom-right">
+      <div class="dl-bottom-right" data-i18n-html="dl_bottom_right">
         <span>GPLv3 License</span> — inspect, fork, modify, distribute freely<br>
         SHA256 &amp; signatures available in the GitHub repository<br>
         <span>100% offline</span> · No telemetry · No accounts required
@@ -696,8 +709,8 @@ footer{
 <!-- TRUST -->
 <section class="trust-section">
   <div class="trust-inner">
-    <span class="section-label reveal" style="text-align:center;display:block;">COMMUNITY &amp; TECHNOLOGY</span>
-    <h2 class="section-title reveal" style="text-align:center;margin-bottom:1rem;">Built with open tools,<br>trusted by the community</h2>
+    <span class="section-label reveal" style="text-align:center;display:block;" data-i18n="trust_label">COMMUNITY &amp; TECHNOLOGY</span>
+    <h2 class="section-title reveal" style="text-align:center;margin-bottom:1rem;" data-i18n-html="trust_title">Built with open tools,<br>trusted by the community</h2>
     <div class="slider-container reveal">
       <div class="slider-track">
         <div class="slide" data-tooltip="In collaboration with GDSchool"><img src="https://i.ibb.co/SXnqwrNK/GDSL.png" alt="GDSchool" class="partner-logo"></div>
@@ -710,82 +723,82 @@ footer{
         <div class="slide" data-tooltip="Community Infrastructure"><img src="https://i.ibb.co/ymRh0VPc/italiman8712.png" alt="Infrastructure" class="partner-logo"></div>
       </div>
     </div>
-    <p class="legal-note">Trademarks belong to their respective owners. Used to showcase the open‑source ecosystem.<br>No commercial affiliation — AVGVSTO is independent and community‑driven.</p>
+    <p class="legal-note" data-i18n-html="trust_note">Trademarks belong to their respective owners. Used to showcase the open‑source ecosystem.<br>No commercial affiliation — AVGVSTO is independent and community‑driven.</p>
   </div>
 </section>
 
 <!-- FAQ -->
 <div class="faq-wrap" style="max-width:100%;">
   <div style="max-width:900px;margin:0 auto;">
-    <span class="section-label reveal">INTEL</span>
-    <h2 class="section-title reveal">Frequently asked</h2>
+    <span class="section-label reveal" data-i18n="faq_label">INTEL</span>
+    <h2 class="section-title reveal" data-i18n="faq_title">Frequently asked</h2>
     <div class="reveal">
-      <div class="faq-item"><div class="faq-q"><span><span class="num">01</span> What happens if I lose the USB?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Your files are irrecoverable — that's the design. Hardware binding guarantees security. For critical data, use the built‑in backup mechanism (local only, encrypted with separate hardware).</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">02</span> Can I use any USB drive?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. Any brand, capacity, FAT/NTFS/exFAT. The hardware serial and volume ID are read — not just the label. Cloning the filesystem onto a different drive won't work.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">03</span> Is there any backdoor or recovery?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Absolutely not. No cloud, no key escrow, no master password. Full source transparency guarantees it — audit every line yourself.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">04</span> How does duress mode work?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Provide a special duress password under coercion; it unlocks a decoy file system. Real data remains mathematically hidden. Both containers are forensically identical.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">05</span> What encryption algorithms are included?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">AES-256-GCM, ChaCha20-Poly1305, and cascade (AES→ChaCha20) with independent keys — all in the open source version. No algorithm is paywalled.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">06</span> Do I need admin rights?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Portable mode runs directly from USB without installation (standard user rights). Full install on Windows requires admin. Linux and macOS run as user.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">07</span> How does the anti‑bruteforce lockout reset?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">The lockout timer is persistent and hardware‑bound. It resets only after successful authentication with the correct USB + password. Each failure exponentially increases the delay, up to 1 month.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">08</span> Is the source code auditable?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Full source on GitHub (GPLv3). All cryptographic primitives are standard libraries. Deterministic builds. Third‑party audits are welcome and encouraged.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">09</span> Does cascade encryption impact performance?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Modern CPUs handle both ciphers with &lt;8% overhead. AES‑NI + AVX2 acceleration is used where available. Even on low-end hardware the difference is negligible for typical file sizes.</div></div>
-      <div class="faq-item"><div class="faq-q"><span><span class="num">10</span> Can I contribute?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. The project lives on GitHub. Open issues, submit PRs, improve documentation, audit the crypto — everyone is welcome. Stars are appreciated.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">01</span> <span data-i18n="faq_q1">What happens if I lose the USB?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a1">Your files are irrecoverable — that's the design. Hardware binding guarantees security. For critical data, use the built‑in backup mechanism (local only, encrypted with separate hardware).</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">02</span> <span data-i18n="faq_q2">Can I use any USB drive?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a2">Yes. Any brand, capacity, FAT/NTFS/exFAT. The hardware serial and volume ID are read — not just the label. Cloning the filesystem onto a different drive won't work.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">03</span> <span data-i18n="faq_q3">Is there any backdoor or recovery?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a3">Absolutely not. No cloud, no key escrow, no master password. Full source transparency guarantees it — audit every line yourself.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">04</span> <span data-i18n="faq_q4">How does duress mode work?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a4">Provide a special duress password under coercion; it unlocks a decoy file system. Real data remains mathematically hidden. Both containers are forensically identical.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">05</span> <span data-i18n="faq_q5">What encryption algorithms are included?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a5">AES-256-GCM, ChaCha20-Poly1305, and cascade (AES→ChaCha20) with independent keys — all in the open source version. No algorithm is paywalled.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">06</span> <span data-i18n="faq_q6">Do I need admin rights?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a6">Portable mode runs directly from USB without installation (standard user rights). Full install on Windows requires admin. Linux and macOS run as user.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">07</span> <span data-i18n="faq_q7">How does the anti‑bruteforce lockout reset?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a7">The lockout timer is persistent and hardware‑bound. It resets only after successful authentication with the correct USB + password. Each failure exponentially increases the delay, up to 1 month.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">08</span> <span data-i18n="faq_q8">Is the source code auditable?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a8">Full source on GitHub (GPLv3). All cryptographic primitives are standard libraries. Deterministic builds. Third‑party audits are welcome and encouraged.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">09</span> <span data-i18n="faq_q9">Does cascade encryption impact performance?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a9">Modern CPUs handle both ciphers with &lt;8% overhead. AES‑NI + AVX2 acceleration is used where available. Even on low-end hardware the difference is negligible for typical file sizes.</div></div>
+      <div class="faq-item"><div class="faq-q"><span><span class="num">10</span> <span data-i18n="faq_q10">Can I contribute?</span></span><i class="fas fa-chevron-down"></i></div><div class="faq-a" data-i18n="faq_a10">Yes. The project lives on GitHub. Open issues, submit PRs, improve documentation, audit the crypto — everyone is welcome. Stars are appreciated.</div></div>
     </div>
   </div>
 </div>
 
 <!-- WEBAPP -->
 <section id="webapp" class="webapp-section">
-  <span class="section-label reveal">WEB APP</span>
-  <h2 class="section-title reveal">Crittografia via API<br><span style="color:var(--accent);">dal tuo browser.</span></h2>
-  <p class="section-sub reveal">Interfaccia web per le API AVGVSTO. Crittografa, decrittografa e gestisci le chiavi USB direttamente dal browser.</p>
+  <span class="section-label reveal" data-i18n="wa_label">WEB APP</span>
+  <h2 class="section-title reveal" data-i18n-html="wa_title">Encryption via API<br><span style="color:var(--accent);">from your browser.</span></h2>
+  <p class="section-sub reveal" data-i18n="wa_sub">Web interface for AVGVSTO APIs. Encrypt, decrypt, and manage USB keys directly from your browser.</p>
 
   <div class="reveal" style="margin-bottom:24px;">
     <div class="status-row" style="display:flex;align-items:center;gap:12px;font-size:0.8rem;color:var(--text-mid);font-family:var(--mono);">
-      <span>Server:</span>
+      <span data-i18n="wa_status_server">Server:</span>
       <span class="status-dot offline" id="waStatusDot"></span>
-      <span id="waStatusText">offline</span>
+      <span id="waStatusText" data-i18n="wa_status_offline">offline</span>
       <span style="margin-left:auto;font-size:0.6rem;" id="waApiBase">https://api.avgvstousb.com/api/v1</span>
     </div>
   </div>
 
   <div class="reveal">
     <div class="webapp-tabs" id="waTabs">
-      <button class="webapp-tab active" data-wa="encrypt">Crittografa</button>
-      <button class="webapp-tab" data-wa="decrypt">Decrittografa</button>
-      <button class="webapp-tab" data-wa="verify">Verifica</button>
-      <button class="webapp-tab" data-wa="files">File</button>
-      <button class="webapp-tab" data-wa="keys">Chiavi USB</button>
-      <button class="webapp-tab" data-wa="auth">Account</button>
-      <button class="webapp-tab" data-wa="docs">API</button>
+      <button class="webapp-tab active" data-wa="encrypt" data-i18n="wa_tab_encrypt">Encrypt</button>
+      <button class="webapp-tab" data-wa="decrypt" data-i18n="wa_tab_decrypt">Decrypt</button>
+      <button class="webapp-tab" data-wa="verify" data-i18n="wa_tab_verify">Verify</button>
+      <button class="webapp-tab" data-wa="files" data-i18n="wa_tab_files">File</button>
+      <button class="webapp-tab" data-wa="keys" data-i18n="wa_tab_keys">USB Keys</button>
+      <button class="webapp-tab" data-wa="auth" data-i18n="wa_tab_auth">Account</button>
+      <button class="webapp-tab" data-wa="docs" data-i18n="wa_tab_docs">API</button>
     </div>
 
     <!-- Encrypt -->
     <div class="webapp-content active" id="wa-encrypt">
       <div class="wa-card">
-        <h2>Crittografa testo</h2>
-        <p>Inserisci il testo da crittografare con AES-256-GCM o ChaCha20-Poly1305.</p>
-        <textarea id="waEncryptInput" placeholder="Testo segreto..."></textarea>
+        <h2 data-i18n="wa_encrypt_title">Encrypt text</h2>
+        <p data-i18n="wa_encrypt_desc">Enter text to encrypt with AES-256-GCM or ChaCha20-Poly1305.</p>
+        <textarea id="waEncryptInput" data-i18n-placeholder="wa_encrypt_placeholder" placeholder="Secret text..."></textarea>
         <div class="row">
           <div>
-            <label>Cifrario</label>
+            <label data-i18n="wa_encrypt_label_cipher">Cipher</label>
             <select id="waEncryptCipher"><option value="aes-256-gcm">AES-256-GCM</option><option value="chacha20-poly1305">ChaCha20-Poly1305</option></select>
           </div>
           <div>
-            <label>Passphrase</label>
-            <input type="password" id="waEncryptPassphrase" placeholder="Auto-generata se vuota">
+            <label data-i18n="wa_encrypt_label_passphrase">Passphrase</label>
+            <input type="password" id="waEncryptPassphrase" data-i18n-placeholder="wa_encrypt_placeholder_passphrase" placeholder="Auto-generated if empty">
           </div>
         </div>
         <div class="row">
           <div>
-            <label>Percorso chiave USB</label>
-            <input type="text" id="waEncryptUsbPath" placeholder="Es. E:\ (opzionale)">
+            <label data-i18n="wa_encrypt_label_usb">USB key path</label>
+            <input type="text" id="waEncryptUsbPath" data-i18n-placeholder="wa_encrypt_placeholder_usb" placeholder="e.g. E:\ (optional)">
           </div>
           <div style="flex:0;padding-bottom:14px;">
-            <label class="checkbox-label"><input type="checkbox" id="waEncryptDuress"> Duress</label>
+            <label class="checkbox-label"><input type="checkbox" id="waEncryptDuress"> <span data-i18n="wa_encrypt_label_duress">Duress</span></label>
           </div>
         </div>
-        <button class="btn btn-primary" onclick="waEncrypt()">Crittografa</button>
+        <button class="btn btn-primary" onclick="waEncrypt()" data-i18n="wa_encrypt_btn">Encrypt</button>
         <div class="wa-output" id="waEncryptOutput"></div>
       </div>
     </div>
@@ -793,12 +806,12 @@ footer{
     <!-- Decrypt -->
     <div class="webapp-content" id="wa-decrypt">
       <div class="wa-card">
-        <h2>Decrittografa</h2>
-        <p>Incolla i dati crittografati (base64) e la passphrase per decrittografarli.</p>
-        <textarea id="waDecryptInput" placeholder="Dati crittografati in base64..."></textarea>
-        <input type="password" id="waDecryptPassphrase" placeholder="Passphrase">
-        <input type="text" id="waDecryptUsbPath" placeholder="Percorso chiave USB (opzionale)">
-        <button class="btn btn-primary" onclick="waDecrypt()">Decrittografa</button>
+        <h2 data-i18n="wa_decrypt_title">Decrypt</h2>
+        <p data-i18n="wa_decrypt_desc">Paste the encrypted data (base64) and passphrase to decrypt.</p>
+        <textarea id="waDecryptInput" data-i18n-placeholder="wa_decrypt_placeholder" placeholder="Encrypted data in base64..."></textarea>
+        <input type="password" id="waDecryptPassphrase" data-i18n-placeholder="wa_decrypt_placeholder_passphrase" placeholder="Passphrase">
+        <input type="text" id="waDecryptUsbPath" data-i18n-placeholder="wa_decrypt_placeholder_usbpath" placeholder="USB key path (optional)">
+        <button class="btn btn-primary" onclick="waDecrypt()" data-i18n="wa_decrypt_btn">Decrypt</button>
         <div class="wa-output" id="waDecryptOutput"></div>
       </div>
     </div>
@@ -806,10 +819,10 @@ footer{
     <!-- Verify -->
     <div class="webapp-content" id="wa-verify">
       <div class="wa-card">
-        <h2>Verifica formato</h2>
-        <p>Controlla se i dati sono in formato AVGVSTO valido.</p>
-        <textarea id="waVerifyInput" placeholder="Dati crittografati in base64..."></textarea>
-        <button class="btn btn-primary" onclick="waVerify()">Verifica</button>
+        <h2 data-i18n="wa_verify_title">Verify format</h2>
+        <p data-i18n="wa_verify_desc">Check if data is in valid AVGVSTO format.</p>
+        <textarea id="waVerifyInput" data-i18n-placeholder="wa_verify_placeholder" placeholder="Encrypted data in base64..."></textarea>
+        <button class="btn btn-primary" onclick="waVerify()" data-i18n="wa_verify_btn">Verify</button>
         <div class="wa-output" id="waVerifyOutput"></div>
       </div>
     </div>
@@ -817,36 +830,36 @@ footer{
     <!-- Files -->
     <div class="webapp-content" id="wa-files">
       <div class="wa-card">
-        <h2>Crittografa file</h2>
-        <p>Carica un file da crittografare. Riceverai il file .avgvsto in base64.</p>
+        <h2 data-i18n="wa_files_enc_title">Encrypt file</h2>
+        <p data-i18n="wa_files_enc_desc">Upload a file to encrypt. You will receive the .avgvsto file in base64.</p>
         <div class="file-drop" id="waEncryptFileDrop" onclick="document.getElementById('waEncryptFile').click()">
-          <div id="waEncryptFileLabel">Trascina un file qui o clicca per selezionare</div>
+          <div id="waEncryptFileLabel" data-i18n="wa_files_enc_drop">Drop a file here or click to select</div>
           <div class="filename hidden" id="waEncryptFileName"></div>
         </div>
         <input type="file" id="waEncryptFile" class="hidden" onchange="waHandleFileSelect('waEncryptFile','waEncryptFileLabel','waEncryptFileName')">
         <div class="row">
           <div>
-            <label>Cifrario</label>
+            <label data-i18n="wa_files_enc_label_cipher">Cipher</label>
             <select id="waEncryptFileCipher"><option value="aes-256-gcm">AES-256-GCM</option><option value="chacha20-poly1305">ChaCha20-Poly1305</option></select>
           </div>
           <div>
-            <label>Passphrase</label>
-            <input type="password" id="waEncryptFilePassphrase" placeholder="Auto-generata se vuota">
+            <label data-i18n="wa_files_enc_label_passphrase">Passphrase</label>
+            <input type="password" id="waEncryptFilePassphrase" data-i18n-placeholder="wa_files_enc_placeholder_passphrase" placeholder="Auto-generated if empty">
           </div>
         </div>
-        <button class="btn btn-primary" onclick="waEncryptFile()">Crittografa file</button>
+        <button class="btn btn-primary" onclick="waEncryptFile()" data-i18n="wa_files_enc_btn">Encrypt file</button>
         <div class="wa-output" id="waEncryptFileOutput"></div>
       </div>
       <div class="wa-card">
-        <h2>Decrittografa file</h2>
-        <p>Carica un file .avgvsto crittografato.</p>
+        <h2 data-i18n="wa_files_dec_title">Decrypt file</h2>
+        <p data-i18n="wa_files_dec_desc">Upload an encrypted .avgvsto file.</p>
         <div class="file-drop" id="waDecryptFileDrop" onclick="document.getElementById('waDecryptFile').click()">
-          <div id="waDecryptFileLabel">Trascina un file .avgvsto qui</div>
+          <div id="waDecryptFileLabel" data-i18n="wa_files_dec_drop">Drop a .avgvsto file here</div>
           <div class="filename hidden" id="waDecryptFileName"></div>
         </div>
         <input type="file" id="waDecryptFile" class="hidden" onchange="waHandleFileSelect('waDecryptFile','waDecryptFileLabel','waDecryptFileName')">
-        <input type="password" id="waDecryptFilePassphrase" placeholder="Passphrase">
-        <button class="btn btn-primary" onclick="waDecryptFile()">Decrittografa file</button>
+        <input type="password" id="waDecryptFilePassphrase" data-i18n-placeholder="wa_files_dec_placeholder_passphrase" placeholder="Passphrase">
+        <button class="btn btn-primary" onclick="waDecryptFile()" data-i18n="wa_files_dec_btn">Decrypt file</button>
         <div class="wa-output" id="waDecryptFileOutput"></div>
       </div>
     </div>
@@ -854,63 +867,63 @@ footer{
     <!-- Keys -->
     <div class="webapp-content" id="wa-keys">
       <div class="wa-card">
-        <h2>Associa chiave USB</h2>
-        <p>Inserisci il percorso della tua chiave USB per associarla al tuo account.</p>
-        <input type="text" id="waBindUsbPath" placeholder="Es. E:\">
-        <button class="btn btn-primary" onclick="waBindUsb()">Associa</button>
+        <h2 data-i18n="wa_keys_bind_title">Bind USB key</h2>
+        <p data-i18n="wa_keys_bind_desc">Enter your USB key path to bind it to your account.</p>
+        <input type="text" id="waBindUsbPath" data-i18n-placeholder="wa_keys_bind_placeholder" placeholder="e.g. E:\">
+        <button class="btn btn-primary" onclick="waBindUsb()" data-i18n="wa_keys_bind_btn">Bind</button>
         <div class="wa-output" id="waBindUsbOutput"></div>
       </div>
       <div class="wa-card">
-        <h2>Chiavi associate</h2>
-        <div id="waKeysList"><p class="text-muted">Nessuna chiave associata.</p></div>
-        <button class="btn btn-outline" style="margin-top:14px;padding:10px 22px;font-size:0.6rem;" onclick="waListKeys()">Aggiorna lista</button>
+        <h2 data-i18n="wa_keys_list_title">Bound keys</h2>
+        <div id="waKeysList"><p class="text-muted" data-i18n="wa_keys_list_empty">No keys bound.</p></div>
+        <button class="btn btn-outline" style="margin-top:14px;padding:10px 22px;font-size:0.6rem;" onclick="waListKeys()" data-i18n="wa_keys_list_btn">Refresh list</button>
       </div>
     </div>
 
     <!-- Auth -->
     <div class="webapp-content" id="wa-auth">
       <div class="wa-card" id="waRegisterCard">
-        <h2>Registrati</h2>
-        <p>Crea un account per usare le API di crittografia.</p>
-        <input type="text" id="waRegUsername" placeholder="Username (3-64 caratteri)">
-        <input type="password" id="waRegPassword" placeholder="Password (min 8 caratteri)">
-        <button class="btn btn-primary" onclick="waRegister()">Registrati</button>
+        <h2 data-i18n="wa_auth_reg_title">Register</h2>
+        <p data-i18n="wa_auth_reg_desc">Create an account to use the encryption APIs.</p>
+        <input type="text" id="waRegUsername" data-i18n-placeholder="wa_auth_reg_placeholder_user" placeholder="Username (3-64 chars)">
+        <input type="password" id="waRegPassword" data-i18n-placeholder="wa_auth_reg_placeholder_pass" placeholder="Password (min 8 chars)">
+        <button class="btn btn-primary" onclick="waRegister()" data-i18n="wa_auth_reg_btn">Register</button>
         <div class="wa-output" id="waRegOutput"></div>
       </div>
       <div class="wa-card" id="waLoginCard">
-        <h2>Login</h2>
-        <input type="text" id="waLoginUsername" placeholder="Username">
-        <input type="password" id="waLoginPassword" placeholder="Password">
-        <button class="btn btn-primary" onclick="waLogin()">Accedi</button>
+        <h2 data-i18n="wa_auth_login_title">Login</h2>
+        <input type="text" id="waLoginUsername" data-i18n-placeholder="wa_auth_login_placeholder_user" placeholder="Username">
+        <input type="password" id="waLoginPassword" data-i18n-placeholder="wa_auth_login_placeholder_pass" placeholder="Password">
+        <button class="btn btn-primary" onclick="waLogin()" data-i18n="wa_auth_login_btn">Login</button>
         <div class="wa-output" id="waLoginOutput"></div>
       </div>
       <div class="wa-card" id="waProfileCard" style="display:none">
-        <h2>Profilo</h2>
-        <p style="margin-bottom:0;">Benvenuto <strong id="waProfileName" style="color:var(--accent);"></strong> (ruolo: <span id="waProfileRole"></span>)</p>
-        <p class="text-muted" style="margin-top:10px;">Sei autenticato. Ora puoi usare tutte le funzioni di crittografia.</p>
+        <h2 data-i18n="wa_auth_profile_title">Profile</h2>
+        <p style="margin-bottom:0;" data-i18n-html="wa_auth_profile_welcome">Welcome <strong id="waProfileName" style="color:var(--accent);"></strong> (role: <span id="waProfileRole"></span>)</p>
+        <p class="text-muted" style="margin-top:10px;" data-i18n="wa_auth_profile_desc">You are authenticated. You can now use all encryption functions.</p>
       </div>
     </div>
 
     <!-- Docs -->
     <div class="webapp-content" id="wa-docs">
       <div class="wa-card">
-        <h2>API Reference</h2>
-        <p>Specifica OpenAPI disponibile su <code style="color:var(--accent);">https://api.avgvstousb.com/api/v1/openapi.json</code></p>
+        <h2 data-i18n="wa_docs_title">API Reference</h2>
+        <p data-i18n="wa_docs_desc">OpenAPI spec available at <code style="color:var(--accent);">https://api.avgvstousb.com/api/v1/openapi.json</code></p>
         <table>
-          <tr><th>Metodo</th><th>Endpoint</th><th>Descrizione</th></tr>
-          <tr><td>POST</td><td>/api/v1/register</td><td>Crea account</td></tr>
-          <tr><td>POST</td><td>/api/v1/login</td><td>Ottieni JWT</td></tr>
-          <tr><td>POST</td><td>/api/v1/refresh</td><td>Rinnova token</td></tr>
-          <tr><td>POST</td><td>/api/v1/encrypt</td><td>Crittografa testo</td></tr>
-          <tr><td>POST</td><td>/api/v1/decrypt</td><td>Decrittografa</td></tr>
-          <tr><td>POST</td><td>/api/v1/verify</td><td>Verifica formato</td></tr>
-          <tr><td>POST</td><td>/api/v1/encrypt-file</td><td>Crittografa file</td></tr>
-          <tr><td>POST</td><td>/api/v1/decrypt-file</td><td>Decrittografa file</td></tr>
-          <tr><td>POST</td><td>/api/v1/keys/bind-usb</td><td>Associa chiave USB</td></tr>
-          <tr><td>GET</td><td>/api/v1/keys</td><td>Chiavi associate</td></tr>
-          <tr><td>GET</td><td>/api/v1/audit-log</td><td>Log audit (admin)</td></tr>
-          <tr><td>GET</td><td>/api/v1/health</td><td>Stato server</td></tr>
-          <tr><td>GET</td><td>/api/v1/openapi.json</td><td>Specifica OpenAPI</td></tr>
+          <tr><th data-i18n="wa_docs_th_method">Method</th><th data-i18n="wa_docs_th_endpoint">Endpoint</th><th data-i18n="wa_docs_th_desc">Description</th></tr>
+          <tr><td>POST</td><td>/api/v1/register</td><td data-i18n="wa_docs_register">Create account</td></tr>
+          <tr><td>POST</td><td>/api/v1/login</td><td data-i18n="wa_docs_login">Get JWT token</td></tr>
+          <tr><td>POST</td><td>/api/v1/refresh</td><td data-i18n="wa_docs_refresh">Refresh token</td></tr>
+          <tr><td>POST</td><td>/api/v1/encrypt</td><td data-i18n="wa_docs_encrypt">Encrypt text</td></tr>
+          <tr><td>POST</td><td>/api/v1/decrypt</td><td data-i18n="wa_docs_decrypt">Decrypt</td></tr>
+          <tr><td>POST</td><td>/api/v1/verify</td><td data-i18n="wa_docs_verify">Verify format</td></tr>
+          <tr><td>POST</td><td>/api/v1/encrypt-file</td><td data-i18n="wa_docs_encrypt_file">Encrypt file</td></tr>
+          <tr><td>POST</td><td>/api/v1/decrypt-file</td><td data-i18n="wa_docs_decrypt_file">Decrypt file</td></tr>
+          <tr><td>POST</td><td>/api/v1/keys/bind-usb</td><td data-i18n="wa_docs_bind_usb">Bind USB key</td></tr>
+          <tr><td>GET</td><td>/api/v1/keys</td><td data-i18n="wa_docs_keys">List bound keys</td></tr>
+          <tr><td>GET</td><td>/api/v1/audit-log</td><td data-i18n="wa_docs_audit">Audit log (admin)</td></tr>
+          <tr><td>GET</td><td>/api/v1/health</td><td data-i18n="wa_docs_health">Server status</td></tr>
+          <tr><td>GET</td><td>/api/v1/openapi.json</td><td data-i18n="wa_docs_openapi">OpenAPI spec</td></tr>
         </table>
       </div>
     </div>
@@ -922,15 +935,15 @@ footer{
   <div class="footer-top">
     <a href="#" class="logo"><img src="https://i.ibb.co/dsB0tnQ3/avl.png" alt="AVGVSTO" style="height:30px;"> <span style="font-size:1.1rem;">AVGVSTO</span> <span class="logo-badge">GPLv3</span></a>
     <div class="footer-links">
-      <a href="https://github.com/RoyMerlo/AVGVSTO-USB" target="_blank" rel="noopener"><i class="fab fa-github"></i> Repository</a>
-      <a href="https://github.com/RoyMerlo" target="_blank" rel="noopener"><i class="fas fa-user"></i> Developer</a>
-      <a href="#download">Download</a>
-      <a href="#faq">FAQ</a>
-      <a href="files/avgv.pdf" target="_blank" rel="noopener">Whitepaper</a>
-      <a href="#tools">Tools</a>
-      <a href="#webapp">Web App</a>
+      <a href="https://github.com/RoyMerlo/AVGVSTO-USB" target="_blank" rel="noopener"><i class="fab fa-github"></i> <span data-i18n="footer_repo">Repository</span></a>
+      <a href="https://github.com/RoyMerlo" target="_blank" rel="noopener"><i class="fas fa-user"></i> <span data-i18n="footer_dev">Developer</span></a>
+      <a href="#download" data-i18n="footer_download">Download</a>
+      <a href="#faq" data-i18n="footer_faq">FAQ</a>
+      <a href="files/avgv.pdf" target="_blank" rel="noopener" data-i18n="footer_wp">Whitepaper</a>
+      <a href="#tools" data-i18n="footer_tools">Tools</a>
+      <a href="#webapp" data-i18n="footer_webapp">Web App</a>
     </div>
-    <span style="font-family:var(--mono);font-size:0.58rem;color:var(--text-mid);">
+    <span style="font-family:var(--mono);font-size:0.58rem;color:var(--text-mid);" data-i18n-html="footer_copyright">
       © 2026 Roy Merlo &amp; <a href="https://github.com/Rp-ics" style="color:#93b9ff;text-decoration:none;">RPX</a> — open source, auditable, sovereign
     </span>
   </div>
@@ -1231,6 +1244,548 @@ if (waToken) {
 
 setInterval(waCheckHealth, 15000);
 waCheckHealth();
+
+// === Internationalization ===
+const i18n = {
+  en: {
+    nav_architecture: 'Architecture',
+    nav_features: 'Features',
+    nav_gallery: 'Interface',
+    nav_whitepaper: 'Whitepaper',
+    nav_tools: 'Tools',
+    nav_webapp: 'Web App',
+    nav_faq: 'FAQ',
+    nav_github: 'GitHub',
+    nav_download: 'Download',
+    hero_label: 'FULLY OPEN SOURCE \u00b7 GPLv3 \u00b7 HARDWARE-BOUND',
+    hero_glitch: 'HARDWARE-BOUND',
+    hero_hl: 'FILE ENCRYPTION',
+    hero_dim: 'OPEN SOURCE.',
+    hero_desc: 'AVGVSTO fuses your password with the physical fingerprint of any USB drive. Without the exact hardware, decryption is <strong>impossible</strong> \u2014 even with the correct password. Anti\u2011bruteforce. Duress mode. Cascade ciphers. Zero telemetry. Zero cloud.',
+    hero_btn_download: 'Download Free',
+    hero_btn_source: 'Source Code',
+    hero_btn_roy: 'Roy',
+    hero_btn_rpx: 'RPX',
+    hero_terminal_label: 'AVGVSTO v3.1.3 \u2014 AES-256-GCM \u00b7 ChaCha20 \u00b7 CASCADE',
+    term_l1: '<span class="t-dim">$</span> <span class="t-acc">avgvsto</span> encrypt <span class="t-gold">./classified_docs/</span> --usb /dev/sdb1',
+    term_l2: '<span class="t-dim">  [\u2713] USB Hardware Fingerprint verified \u2014 ID: 3a8f2c...</span>',
+    term_l3: '<span class="t-dim">  [\u2713] PBKDF2 key derivation \u2014 1,000,000 iterations</span>',
+    term_l4: '<span class="t-acc">  [\u2713] AES-256-GCM \u2192 ChaCha20-Poly1305 cascade applied</span>',
+    term_l5: '<span class="t-dim">  [\u2713] 47 file(s) encrypted. Originals shredded (3-pass DoD).</span>',
+    term_l6: '<span class="t-acc">  [\u2713] Audit log entry signed and appended.</span>',
+    stat_pbkdf2: 'PBKDF2 Iterations',
+    stat_key_bits: 'Effective Key Bits',
+    stat_oss: 'Open Source \u00b7 Auditable',
+    stat_platforms: 'Platforms: Win / Mac / Linux',
+    arch_label: 'CRYPTO CORE',
+    arch_title: 'Radical transparency,<br><em class="glitch" data-i18n-glitch="arch_title2" data-text="military\u2011grade security" style="font-style:normal;color:var(--accent);">military\u2011grade security</em>',
+    arch_title2: 'military\u2011grade security',
+    arch_sub: 'Every cryptographic decision is visible, auditable, and reproducible. No black boxes.',
+    arch_card1_title: 'USB HARDWARE FINGERPRINT',
+    arch_card1_desc: '<code>serial + volumeID</code> merged into key via PBKDF2. Any USB works, cloning fails.',
+    arch_card1_li1: '128-bit hardware salt',
+    arch_card1_li2: 'Clone / emulation resistant',
+    arch_card2_title: 'AES-256-GCM / CHACHA20',
+    arch_card2_desc: 'Authenticated encryption, indistinguishable from random. Choose your cipher or cascade both.',
+    arch_card2_li1: 'AES-NI + AVX2 acceleration',
+    arch_card2_li2: 'Poly1305 MAC authentication',
+    arch_card3_title: 'ANTI\u2011BRUTEFORCE ENGINE',
+    arch_card3_desc: 'Exponential backoff up to 1 month. Hardware\u2011bound lockout, no reset bypass.',
+    arch_card3_li1: 'Progressive delay: 5s \u2192 1 month',
+    arch_card3_li2: 'Persistent across restarts',
+    arch_card4_title: 'PLAUSIBLE DENIABILITY',
+    arch_card4_desc: 'Duress password reveals a decoy. Real data is mathematically hidden in the same container.',
+    arch_card4_li1: 'Two independent key trees',
+    arch_card4_li2: 'Forensically indistinguishable',
+    arch_card5_title: 'CASCADE ENCRYPTION',
+    arch_card5_desc: 'AES\u2011256 \u2192 ChaCha20 with independent keys. Future-proof double-layer defense.',
+    arch_card5_li1: '512\u2011bit effective strength',
+    arch_card5_li2: 'Post\u2011quantum resilient design',
+    arch_card6_title: 'TAMPER\u2011PROOF AUDIT',
+    arch_card6_desc: 'Immutable signed logs of every access event. HMAC-SHA256 per entry. No deletion possible.',
+    arch_card6_li1: 'Forensic integrity chain',
+    arch_card6_li2: 'Business: full audit trail',
+    feat_label: 'WHAT YOU GET',
+    feat_title: 'Everything included.<br>Forever free &amp; open.',
+    feat_sub: 'No paywalls. No feature gates. No artificial tiers. Full cryptographic power in your hands.',
+    feat_card1_title: 'No artificial limits',
+    feat_card1_desc: 'Unlimited files, unlimited batches, unlimited users. The full suite is yours.',
+    feat_card2_title: 'CLI + GUI duality',
+    feat_card2_desc: 'Full command-line automation for power users; polished GUI for everyone else.',
+    feat_card3_title: 'Portable mode',
+    feat_card3_desc: 'Run directly from any USB stick. Zero installation, ideal for air-gapped systems.',
+    feat_card4_title: 'Fully auditable source',
+    feat_card4_desc: 'Every primitive visible. Build deterministically. Verify with confidence. Fork freely.',
+    feat_card5_title: 'Secure deletion',
+    feat_card5_desc: '3-pass DoD-compliant shredding of temp files and original plaintext after encryption.',
+    feat_card6_title: '100% offline operation',
+    feat_card6_desc: 'No cloud, no telemetry, no activation servers. Your data never leaves your hardware.',
+    gallery_label: 'INTERFACE \u00b7 NO BLOAT',
+    gallery_title: 'Minimal. Direct. Effective.',
+    gallery_sub: 'Click any screenshot to inspect the interface in full detail.',
+    gallery_alt1: 'main dashboard',
+    gallery_cap1: 'Main Dashboard',
+    gallery_alt2: 'simple mode',
+    gallery_cap2: 'Simple mode',
+    gallery_alt3: 'usb analysis',
+    gallery_cap3: 'USB Analyzer',
+    gallery_alt4: 'attempt limits',
+    gallery_cap4: 'Attempt Limits',
+    gallery_alt5: 'encrypt view',
+    gallery_cap5: 'Encryption View',
+    gallery_alt6: 'progress',
+    gallery_cap6: 'Progress',
+    gallery_alt7: 'bruteforce lockout',
+    gallery_cap7: 'Bruteforce Lockout',
+    gallery_alt8: 'integrity analyzer',
+    gallery_cap8: 'Integrity Analyzer',
+    gallery_alt9: 'action selection',
+    gallery_cap9: 'Action Selection',
+    gallery_alt10: 'duress ui',
+    gallery_cap10: 'Duress UI',
+    gallery_alt11: 'usb cleaner',
+    gallery_cap11: 'USB Cleaner',
+    gallery_alt12: 'built-in help',
+    gallery_cap12: 'Built\u2011in Help',
+    tools_label: 'TOOLS ECOSYSTEM',
+    tools_title: 'Essential utilities<br><span style="color:var(--accent);">built for privacy &amp; speed</span>',
+    tools_card1_title: 'QR Code Studio',
+    tools_card1_desc: 'Transform any text, link, or data into a scannable QR code. Choose permanent or temporary codes with custom lifespan. Download as high-res PNG.',
+    tools_card1_btn: 'Launch QR Generator \u2192',
+    tools_card2_title: 'Temporary Chat',
+    tools_card2_desc: 'Ephemeral, self-destructing messages. No logs, no tracking. Create a room, share the link, and chat privately. Messages disappear after being read.',
+    tools_card2_btn: 'Launch Temp Chat \u2192',
+    tools_card3_title: 'Integrity Verifier',
+    tools_card3_desc: 'SHA-3 & HMAC checksums for any file. Verify file integrity with cryptographic hashing.',
+    tools_card3_btn: 'Coming soon',
+    wp_label: 'FULL TECHNICAL ARCHITECTURE',
+    wp_title: 'AVGVSTO 3.1.3 \u2014 Official Cryptography Whitepaper',
+    wp_download: 'Download PDF',
+    wp_read: 'Read on GitHub',
+    dl_label: 'GET AVGVSTO FREE',
+    dl_title: 'Download for your<br><em>platform.</em>',
+    dl_subtitle: 'Pre-compiled \u00b7 GPLv3 \u00b7 No registration \u00b7 No telemetry',
+    dl_card1_name: 'WINDOWS',
+    dl_card1_ver: 'Windows 10 / 11 \u00b7 x64',
+    dl_card1_desc: 'Native executable. No installation required \u2014 run directly or deploy as portable from USB. Includes GUI + CLI.',
+    dl_card2_name: 'macOS',
+    dl_card2_ver: 'macOS 12 Monterey+ \u00b7 ARM/Intel',
+    dl_card2_desc: 'Universal binary \u2014 runs on both Apple Silicon and Intel Macs. Full feature parity. Native dark mode.',
+    dl_card3_name: 'LINUX',
+    dl_card3_ver: 'Ubuntu 20.04+ \u00b7 Debian \u00b7 Arch',
+    dl_card3_desc: 'AppImage \u2014 runs on any modern distro without installation. Full CLI available for headless deployments.',
+    dl_card_btn: 'Download',
+    dl_btn_releases: 'Latest Release on GitHub',
+    dl_btn_source: 'Build from Source',
+    dl_bottom_right: '<span>GPLv3 License</span> \u2014 inspect, fork, modify, distribute freely<br>SHA256 &amp; signatures available in the GitHub repository<br><span>100% offline</span> \u00b7 No telemetry \u00b7 No accounts required',
+    trust_label: 'COMMUNITY &amp; TECHNOLOGY',
+    trust_title: 'Built with open tools,<br>trusted by the community',
+    trust_note: 'Trademarks belong to their respective owners. Used to showcase the open\u2011source ecosystem.<br>No commercial affiliation \u2014 AVGVSTO is independent and community\u2011driven.',
+    faq_label: 'INTEL',
+    faq_title: 'Frequently asked',
+    faq_q1: 'What happens if I lose the USB?',
+    faq_a1: 'Your files are irrecoverable \u2014 that\u2019s the design. Hardware binding guarantees security. For critical data, use the built\u2011in backup mechanism (local only, encrypted with separate hardware).',
+    faq_q2: 'Can I use any USB drive?',
+    faq_a2: 'Yes. Any brand, capacity, FAT/NTFS/exFAT. The hardware serial and volume ID are read \u2014 not just the label. Cloning the filesystem onto a different drive won\u2019t work.',
+    faq_q3: 'Is there any backdoor or recovery?',
+    faq_a3: 'Absolutely not. No cloud, no key escrow, no master password. Full source transparency guarantees it \u2014 audit every line yourself.',
+    faq_q4: 'How does duress mode work?',
+    faq_a4: 'Provide a special duress password under coercion; it unlocks a decoy file system. Real data remains mathematically hidden. Both containers are forensically identical.',
+    faq_q5: 'What encryption algorithms are included?',
+    faq_a5: 'AES-256-GCM, ChaCha20-Poly1305, and cascade (AES\u2192ChaCha20) with independent keys \u2014 all in the open source version. No algorithm is paywalled.',
+    faq_q6: 'Do I need admin rights?',
+    faq_a6: 'Portable mode runs directly from USB without installation (standard user rights). Full install on Windows requires admin. Linux and macOS run as user.',
+    faq_q7: 'How does the anti\u2011bruteforce lockout reset?',
+    faq_a7: 'The lockout timer is persistent and hardware\u2011bound. It resets only after successful authentication with the correct USB + password. Each failure exponentially increases the delay, up to 1 month.',
+    faq_q8: 'Is the source code auditable?',
+    faq_a8: 'Full source on GitHub (GPLv3). All cryptographic primitives are standard libraries. Deterministic builds. Third\u2011party audits are welcome and encouraged.',
+    faq_q9: 'Does cascade encryption impact performance?',
+    faq_a9: 'Modern CPUs handle both ciphers with &lt;8% overhead. AES\u2011NI + AVX2 acceleration is used where available. Even on low-end hardware the difference is negligible for typical file sizes.',
+    faq_q10: 'Can I contribute?',
+    faq_a10: 'Yes. The project lives on GitHub. Open issues, submit PRs, improve documentation, audit the crypto \u2014 everyone is welcome. Stars are appreciated.',
+    wa_label: 'WEB APP',
+    wa_title: 'Encryption via API<br><span style="color:var(--accent);">from your browser.</span>',
+    wa_sub: 'Web interface for AVGVSTO APIs. Encrypt, decrypt, and manage USB keys directly from your browser.',
+    wa_status_server: 'Server:',
+    wa_status_offline: 'offline',
+    wa_tab_encrypt: 'Encrypt',
+    wa_tab_decrypt: 'Decrypt',
+    wa_tab_verify: 'Verify',
+    wa_tab_files: 'File',
+    wa_tab_keys: 'USB Keys',
+    wa_tab_auth: 'Account',
+    wa_tab_docs: 'API',
+    wa_encrypt_title: 'Encrypt text',
+    wa_encrypt_desc: 'Enter text to encrypt with AES-256-GCM or ChaCha20-Poly1305.',
+    wa_encrypt_placeholder: 'Secret text...',
+    wa_encrypt_label_cipher: 'Cipher',
+    wa_encrypt_label_passphrase: 'Passphrase',
+    wa_encrypt_placeholder_passphrase: 'Auto-generated if empty',
+    wa_encrypt_label_usb: 'USB key path',
+    wa_encrypt_placeholder_usb: 'e.g. E:\\ (optional)',
+    wa_encrypt_label_duress: 'Duress',
+    wa_encrypt_btn: 'Encrypt',
+    wa_decrypt_title: 'Decrypt',
+    wa_decrypt_desc: 'Paste the encrypted data (base64) and passphrase to decrypt.',
+    wa_decrypt_placeholder: 'Encrypted data in base64...',
+    wa_decrypt_placeholder_passphrase: 'Passphrase',
+    wa_decrypt_placeholder_usbpath: 'USB key path (optional)',
+    wa_decrypt_btn: 'Decrypt',
+    wa_verify_title: 'Verify format',
+    wa_verify_desc: 'Check if data is in valid AVGVSTO format.',
+    wa_verify_placeholder: 'Encrypted data in base64...',
+    wa_verify_btn: 'Verify',
+    wa_files_enc_title: 'Encrypt file',
+    wa_files_enc_desc: 'Upload a file to encrypt. You will receive the .avgvsto file in base64.',
+    wa_files_enc_drop: 'Drop a file here or click to select',
+    wa_files_enc_label_cipher: 'Cipher',
+    wa_files_enc_label_passphrase: 'Passphrase',
+    wa_files_enc_placeholder_passphrase: 'Auto-generated if empty',
+    wa_files_enc_btn: 'Encrypt file',
+    wa_files_dec_title: 'Decrypt file',
+    wa_files_dec_desc: 'Upload an encrypted .avgvsto file.',
+    wa_files_dec_drop: 'Drop a .avgvsto file here',
+    wa_files_dec_placeholder_passphrase: 'Passphrase',
+    wa_files_dec_btn: 'Decrypt file',
+    wa_keys_bind_title: 'Bind USB key',
+    wa_keys_bind_desc: 'Enter your USB key path to bind it to your account.',
+    wa_keys_bind_placeholder: 'e.g. E:\\',
+    wa_keys_bind_btn: 'Bind',
+    wa_keys_list_title: 'Bound keys',
+    wa_keys_list_empty: 'No keys bound.',
+    wa_keys_list_btn: 'Refresh list',
+    wa_auth_reg_title: 'Register',
+    wa_auth_reg_desc: 'Create an account to use the encryption APIs.',
+    wa_auth_reg_placeholder_user: 'Username (3-64 chars)',
+    wa_auth_reg_placeholder_pass: 'Password (min 8 chars)',
+    wa_auth_reg_btn: 'Register',
+    wa_auth_login_title: 'Login',
+    wa_auth_login_placeholder_user: 'Username',
+    wa_auth_login_placeholder_pass: 'Password',
+    wa_auth_login_btn: 'Login',
+    wa_auth_profile_title: 'Profile',
+    wa_auth_profile_welcome: 'Welcome <strong id="waProfileName" style="color:var(--accent);"></strong> (role: <span id="waProfileRole"></span>)',
+    wa_auth_profile_desc: 'You are authenticated. You can now use all encryption functions.',
+    wa_docs_title: 'API Reference',
+    wa_docs_desc: 'OpenAPI spec available at',
+    wa_docs_th_method: 'Method',
+    wa_docs_th_endpoint: 'Endpoint',
+    wa_docs_th_desc: 'Description',
+    wa_docs_register: 'Create account',
+    wa_docs_login: 'Get JWT token',
+    wa_docs_refresh: 'Refresh token',
+    wa_docs_encrypt: 'Encrypt text',
+    wa_docs_decrypt: 'Decrypt',
+    wa_docs_verify: 'Verify format',
+    wa_docs_encrypt_file: 'Encrypt file',
+    wa_docs_decrypt_file: 'Decrypt file',
+    wa_docs_bind_usb: 'Bind USB key',
+    wa_docs_keys: 'List bound keys',
+    wa_docs_audit: 'Audit log (admin)',
+    wa_docs_health: 'Server status',
+    wa_docs_openapi: 'OpenAPI spec',
+    footer_repo: 'Repository',
+    footer_dev: 'Developer',
+    footer_download: 'Download',
+    footer_faq: 'FAQ',
+    footer_wp: 'Whitepaper',
+    footer_tools: 'Tools',
+    footer_webapp: 'Web App',
+    footer_copyright: '\u00a9 2026 Roy Merlo &amp; <a href="https://github.com/Rp-ics" style="color:#93b9ff;text-decoration:none;">RPX</a> \u2014 open source, auditable, sovereign'
+  },
+  it: {
+    nav_architecture: 'Architettura',
+    nav_features: 'Funzionalit\u00e0',
+    nav_gallery: 'Interfaccia',
+    nav_whitepaper: 'Whitepaper',
+    nav_tools: 'Tools',
+    nav_webapp: 'Web App',
+    nav_faq: 'FAQ',
+    nav_github: 'GitHub',
+    nav_download: 'Download',
+    hero_label: 'COMPLETAMENTE OPEN SOURCE \u00b7 GPLv3 \u00b7 LEGATO ALL\u2019HARDWARE',
+    hero_glitch: 'LEGATO ALL\u2019HARDWARE',
+    hero_hl: 'CRITTOGRAFIA FILE',
+    hero_dim: 'OPEN SOURCE.',
+    hero_desc: 'AVGVSTO fonde la tua password con l\u2019impronta fisica di qualsiasi chiavetta USB. Senza l\u2019hardware esatto, la decrittografia \u00e8 <strong>impossibile</strong> \u2014 anche con la password corretta. Anti\u2011bruteforce. Modalit\u00e0 duress. Cifrari a cascata. Zero telemetria. Zero cloud.',
+    hero_btn_download: 'Scarica Gratis',
+    hero_btn_source: 'Codice Sorgente',
+    hero_btn_roy: 'Roy',
+    hero_btn_rpx: 'RPX',
+    hero_terminal_label: 'AVGVSTO v3.1.3 \u2014 AES-256-GCM \u00b7 ChaCha20 \u00b7 CASCADE',
+    term_l1: '<span class="t-dim">$</span> <span class="t-acc">avgvsto</span> encrypt <span class="t-gold">./classified_docs/</span> --usb /dev/sdb1',
+    term_l2: '<span class="t-dim">  [\u2713] Impronta USB verificata \u2014 ID: 3a8f2c...</span>',
+    term_l3: '<span class="t-dim">  [\u2713] Derivazione chiave PBKDF2 \u2014 1.000.000 iterazioni</span>',
+    term_l4: '<span class="t-acc">  [\u2713] Cascade AES-256-GCM \u2192 ChaCha20-Poly1305 applicata</span>',
+    term_l5: '<span class="t-dim">  [\u2713] 47 file crittografati. Originali distrutti (3-pass DoD).</span>',
+    term_l6: '<span class="t-acc">  [\u2713] Voce di audit firmata e aggiunta.</span>',
+    stat_pbkdf2: 'Iterazioni PBKDF2',
+    stat_key_bits: 'Bit Effettivi Chiave',
+    stat_oss: 'Open Source \u00b7 Verificabile',
+    stat_platforms: 'Piattaforme: Win / Mac / Linux',
+    arch_label: 'NUCLEO CRITTOGRAFICO',
+    arch_title: 'Trasparenza radicale,<br><em class="glitch" data-i18n-glitch="arch_title2" data-text="sicurezza militare" style="font-style:normal;color:var(--accent);">sicurezza militare</em>',
+    arch_title2: 'sicurezza militare',
+    arch_sub: 'Ogni decisione crittografica \u00e8 visibile, verificabile e riproducibile. Nessuna scatola nera.',
+    arch_card1_title: 'IMPRONTA USB HARDWARE',
+    arch_card1_desc: '<code>serial + volumeID</code> uniti nella chiave via PBKDF2. Qualsiasi USB funziona, la clonazione fallisce.',
+    arch_card1_li1: 'Salt hardware a 128 bit',
+    arch_card1_li2: 'Resistente a clonazione / emulazione',
+    arch_card2_title: 'AES-256-GCM / CHACHA20',
+    arch_card2_desc: 'Crittografia autenticata, indistinguibile da dati casuali. Scegli il tuo cifrario o usa entrambi in cascata.',
+    arch_card2_li1: 'Accelerazione AES-NI + AVX2',
+    arch_card2_li2: 'Autenticazione MAC Poly1305',
+    arch_card3_title: 'MOTORE ANTI\u2011BRUTEFORCE',
+    arch_card3_desc: 'Backoff esponenziale fino a 1 mese. Blocco legato all\u2019hardware, nessun bypass di reset.',
+    arch_card3_li1: 'Ritardo progressivo: 5s \u2192 1 mese',
+    arch_card3_li2: 'Persistente tra riavvii',
+    arch_card4_title: 'NEGAZIONE PLAUSIBILE',
+    arch_card4_desc: 'La password duress rivela un contenitore fittizio. I dati reali sono matematicamente nascosti nello stesso contenitore.',
+    arch_card4_li1: 'Due alberi di chiavi indipendenti',
+    arch_card4_li2: 'Forensicamente indistinguibile',
+    arch_card5_title: 'CRITTOGRAFIA A CASCATA',
+    arch_card5_desc: 'AES\u2011256 \u2192 ChaCha20 con chiavi indipendenti. Difesa a doppio strato a prova di futuro.',
+    arch_card5_li1: 'Potenza effettiva a 512 bit',
+    arch_card5_li2: 'Design resiliente al post\u2011quantum',
+    arch_card6_title: 'AUDIT INVIOLABILE',
+    arch_card6_desc: 'Log immutabili firmati di ogni evento di accesso. HMAC-SHA256 per voce. Nessuna cancellazione possibile.',
+    arch_card6_li1: 'Catena di integrit\u00e0 forense',
+    arch_card6_li2: 'Business: tracciato di audit completo',
+    feat_label: 'COSA OTTIENI',
+    feat_title: 'Tutto incluso.<br>Per sempre gratuito &amp; aperto.',
+    feat_sub: 'Niente paywall. Niente blocchi. Nessun livello artificiale. Pieno potere crittografico nelle tue mani.',
+    feat_card1_title: 'Nessun limite artificiale',
+    feat_card1_desc: 'File illimitati, batch illimitati, utenti illimitati. L\u2019intera suite \u00e8 tua.',
+    feat_card2_title: 'Dualit\u00e0 CLI + GUI',
+    feat_card2_desc: 'Automazione completa da riga di comando per utenti esperti; GUI curata per tutti gli altri.',
+    feat_card3_title: 'Modalit\u00e0 portatile',
+    feat_card3_desc: 'Esegui direttamente da qualsiasi chiavetta USB. Installazione zero, ideale per sistemi air-gapped.',
+    feat_card4_title: 'Sorgente completamente verificabile',
+    feat_card4_desc: 'Ogni primitiva visibile. Compilazione deterministica. Verifica con fiducia. Fork libero.',
+    feat_card5_title: 'Cancellazione sicura',
+    feat_card5_desc: 'Distruzione conforme DoD a 3 passaggi di file temporanei e plaintext originale dopo la crittografia.',
+    feat_card6_title: 'Funzionamento 100% offline',
+    feat_card6_desc: 'Niente cloud, niente telemetria, niente server di attivazione. I tuoi dati non lasciano mai il tuo hardware.',
+    gallery_label: 'INTERFACCIA \u00b7 SENZA GONFIORE',
+    gallery_title: 'Minimale. Diretto. Efficace.',
+    gallery_sub: 'Clicca qualsiasi screenshot per ispezionare l\u2019interfaccia in dettaglio.',
+    gallery_alt1: 'dashboard principale',
+    gallery_cap1: 'Dashboard Principale',
+    gallery_alt2: 'modalit\u00e0 semplice',
+    gallery_cap2: 'Modalit\u00e0 Semplice',
+    gallery_alt3: 'analisi usb',
+    gallery_cap3: 'Analizzatore USB',
+    gallery_alt4: 'limiti tentativi',
+    gallery_cap4: 'Limiti Tentativi',
+    gallery_alt5: 'vista crittografia',
+    gallery_cap5: 'Vista Crittografia',
+    gallery_alt6: 'progresso',
+    gallery_cap6: 'Progresso',
+    gallery_alt7: 'blocco bruteforce',
+    gallery_cap7: 'Blocco Bruteforce',
+    gallery_alt8: 'analizzatore integrit\u00e0',
+    gallery_cap8: 'Analizzatore Integrit\u00e0',
+    gallery_alt9: 'selezione azioni',
+    gallery_cap9: 'Selezione Azioni',
+    gallery_alt10: 'interfaccia duress',
+    gallery_cap10: 'Interfaccia Duress',
+    gallery_alt11: 'pulitore usb',
+    gallery_cap11: 'Pulitore USB',
+    gallery_alt12: 'aiuto integrato',
+    gallery_cap12: 'Aiuto Integrato',
+    tools_label: 'ECOSISTEMA TOOLS',
+    tools_title: 'Utility essenziali<br><span style="color:var(--accent);">per privacy &amp; velocit\u00e0</span>',
+    tools_card1_title: 'QR Code Studio',
+    tools_card1_desc: 'Trasforma qualsiasi testo, link o dato in un QR code scansionabile. Scegli codici permanenti o temporanei con durata personalizzata. Scarica come PNG ad alta risoluzione.',
+    tools_card1_btn: 'Avvia QR Generator \u2192',
+    tools_card2_title: 'Chat Temporanea',
+    tools_card2_desc: 'Messaggi effimeri e autodistruttivi. Nessun log, nessun tracciamento. Crea una stanza, condividi il link e chatta privatamente. I messaggi scompaiono dopo la lettura.',
+    tools_card2_btn: 'Avvia Temp Chat \u2192',
+    tools_card3_title: 'Verificatore Integrit\u00e0',
+    tools_card3_desc: 'Checksum SHA-3 e HMAC per qualsiasi file. Verifica l\u2019integrit\u00e0 dei file con hashing crittografico.',
+    tools_card3_btn: 'Prossimamente',
+    wp_label: 'ARCHITETTURA TECNICA COMPLETA',
+    wp_title: 'AVGVSTO 3.1.3 \u2014 Whitepaper Ufficiale di Crittografia',
+    wp_download: 'Scarica PDF',
+    wp_read: 'Leggi su GitHub',
+    dl_label: 'SCARICA AVGVSTO GRATIS',
+    dl_title: 'Scarica per la tua<br><em>piattaforma.</em>',
+    dl_subtitle: 'Pre-compilato \u00b7 GPLv3 \u00b7 Nessuna registrazione \u00b7 Nessuna telemetria',
+    dl_card1_name: 'WINDOWS',
+    dl_card1_ver: 'Windows 10 / 11 \u00b7 x64',
+    dl_card1_desc: 'Eseguibile nativo. Nessuna installazione richiesta \u2014 esegui direttamente o distribuisci come portatile da USB. Include GUI + CLI.',
+    dl_card2_name: 'macOS',
+    dl_card2_ver: 'macOS 12 Monterey+ \u00b7 ARM/Intel',
+    dl_card2_desc: 'Binario universale \u2014 funziona sia su Apple Silicon che su Intel Mac. Parit\u00e0 di funzionalit\u00e0. Modalit\u00e0 scura nativa.',
+    dl_card3_name: 'LINUX',
+    dl_card3_ver: 'Ubuntu 20.04+ \u00b7 Debian \u00b7 Arch',
+    dl_card3_desc: 'AppImage \u2014 funziona su qualsiasi distro moderna senza installazione. CLI completa disponibile per deployment headless.',
+    dl_card_btn: 'Scarica',
+    dl_btn_releases: 'Ultima Release su GitHub',
+    dl_btn_source: 'Compila dal Sorgente',
+    dl_bottom_right: '<span>Licenza GPLv3</span> \u2014 ispeziona, fai fork, modifica, distribuisci liberamente<br>SHA256 e firme disponibili nel repository GitHub<br><span>100% offline</span> \u00b7 Nessuna telemetria \u00b7 Nessun account richiesto',
+    trust_label: 'COMUNIT\u00c0 &amp; TECNOLOGIA',
+    trust_title: 'Creato con strumenti aperti,<br>fidato dalla comunit\u00e0',
+    trust_note: 'I marchi appartengono ai rispettivi proprietari. Utilizzati per mostrare l\u2019ecosistema open source.<br>Nessuna affiliazione commerciale \u2014 AVGVSTO \u00e8 indipendente e guidato dalla comunit\u00e0.',
+    faq_label: 'INFO',
+    faq_title: 'Domande frequenti',
+    faq_q1: 'Cosa succede se perdo la USB?',
+    faq_a1: 'I tuoi file sono irrecuperabili \u2014 \u00e8 la filosofia del progetto. Il legame hardware garantisce la sicurezza. Per dati critici, usa il meccanismo di backup integrato (solo locale, crittografato con hardware separato).',
+    faq_q2: 'Posso usare qualsiasi chiavetta USB?',
+    faq_a2: 'S\u00ec. Qualsiasi marca, capacit\u00e0, FAT/NTFS/exFAT. Vengono letti il seriale hardware e il volume ID \u2014 non solo l\u2019etichetta. Clonare il filesystem su un\u2019altra unit\u00e0 non funzioner\u00e0.',
+    faq_q3: 'Esiste qualche backdoor o recupero?',
+    faq_a3: 'Assolutamente no. Niente cloud, niente key escrow, niente password principale. La piena trasparenza del codice lo garantisce \u2014 verifica ogni riga tu stesso.',
+    faq_q4: 'Come funziona la modalit\u00e0 duress?',
+    faq_a4: 'Fornisci una password duress speciale sotto coercizione; sblocca un filesystem fittizio. I dati reali rimangono matematicamente nascosti. Entrambi i contenitori sono forensicamente identici.',
+    faq_q5: 'Quali algoritmi di crittografia sono inclusi?',
+    faq_a5: 'AES-256-GCM, ChaCha20-Poly1305 e cascade (AES\u2192ChaCha20) con chiavi indipendenti \u2014 tutto nella versione open source. Nessun algoritmo \u00e8 a pagamento.',
+    faq_q6: 'Servono diritti di amministratore?',
+    faq_a6: 'La modalit\u00e0 portatile funziona direttamente da USB senza installazione (diritti utente standard). L\u2019installazione completa su Windows richiede admin. Linux e macOS funzionano come utente.',
+    faq_q7: 'Come si resetta il blocco anti\u2011bruteforce?',
+    faq_a7: 'Il timer di blocco \u00e8 persistente e legato all\u2019hardware. Si resetta solo dopo autenticazione riuscita con la USB corretta + password. Ogni fallimento aumenta esponenzialmente il ritardo, fino a 1 mese.',
+    faq_q8: 'Il codice sorgente \u00e8 verificabile?',
+    faq_a8: 'Codice completo su GitHub (GPLv3). Tutte le primitive crittografiche sono librerie standard. Compilazioni deterministiche. Audit di terze parti sono benvenuti e incoraggiati.',
+    faq_q9: 'La crittografia a cascata influisce sulle prestazioni?',
+    faq_a9: 'Le CPU moderne gestiscono entrambi i cifrari con &lt;8% di overhead. L\u2019accelerazione AES\u2011NI + AVX2 viene utilizzata dove disponibile. Anche su hardware di fascia bassa la differenza \u00e8 trascurabile per dimensioni tipiche di file.',
+    faq_q10: 'Posso contribuire?',
+    faq_a10: 'S\u00ec. Il progetto vive su GitHub. Apri issue, invia PR, migliora la documentazione, verifica il codice crittografico \u2014 tutti sono i benvenuti. Le stelle sono apprezzate.',
+    wa_label: 'WEB APP',
+    wa_title: 'Crittografia via API<br><span style="color:var(--accent);">dal tuo browser.</span>',
+    wa_sub: 'Interfaccia web per le API AVGVSTO. Crittografa, decrittografa e gestisci le chiavi USB direttamente dal browser.',
+    wa_status_server: 'Server:',
+    wa_status_offline: 'offline',
+    wa_tab_encrypt: 'Crittografa',
+    wa_tab_decrypt: 'Decrittografa',
+    wa_tab_verify: 'Verifica',
+    wa_tab_files: 'File',
+    wa_tab_keys: 'Chiavi USB',
+    wa_tab_auth: 'Account',
+    wa_tab_docs: 'API',
+    wa_encrypt_title: 'Crittografa testo',
+    wa_encrypt_desc: 'Inserisci il testo da crittografare con AES-256-GCM o ChaCha20-Poly1305.',
+    wa_encrypt_placeholder: 'Testo segreto...',
+    wa_encrypt_label_cipher: 'Cifrario',
+    wa_encrypt_label_passphrase: 'Passphrase',
+    wa_encrypt_placeholder_passphrase: 'Auto-generata se vuota',
+    wa_encrypt_label_usb: 'Percorso chiave USB',
+    wa_encrypt_placeholder_usb: 'Es. E:\\ (opzionale)',
+    wa_encrypt_label_duress: 'Duress',
+    wa_encrypt_btn: 'Crittografa',
+    wa_decrypt_title: 'Decrittografa',
+    wa_decrypt_desc: 'Incolla i dati crittografati (base64) e la passphrase per decrittografarli.',
+    wa_decrypt_placeholder: 'Dati crittografati in base64...',
+    wa_decrypt_placeholder_passphrase: 'Passphrase',
+    wa_decrypt_placeholder_usbpath: 'Percorso chiave USB (opzionale)',
+    wa_decrypt_btn: 'Decrittografa',
+    wa_verify_title: 'Verifica formato',
+    wa_verify_desc: 'Controlla se i dati sono in formato AVGVSTO valido.',
+    wa_verify_placeholder: 'Dati crittografati in base64...',
+    wa_verify_btn: 'Verifica',
+    wa_files_enc_title: 'Crittografa file',
+    wa_files_enc_desc: 'Carica un file da crittografare. Riceverai il file .avgvsto in base64.',
+    wa_files_enc_drop: 'Trascina un file qui o clicca per selezionare',
+    wa_files_enc_label_cipher: 'Cifrario',
+    wa_files_enc_label_passphrase: 'Passphrase',
+    wa_files_enc_placeholder_passphrase: 'Auto-generata se vuota',
+    wa_files_enc_btn: 'Crittografa file',
+    wa_files_dec_title: 'Decrittografa file',
+    wa_files_dec_desc: 'Carica un file .avgvsto crittografato.',
+    wa_files_dec_drop: 'Trascina un file .avgvsto qui',
+    wa_files_dec_placeholder_passphrase: 'Passphrase',
+    wa_files_dec_btn: 'Decrittografa file',
+    wa_keys_bind_title: 'Associa chiave USB',
+    wa_keys_bind_desc: 'Inserisci il percorso della tua chiave USB per associarla al tuo account.',
+    wa_keys_bind_placeholder: 'Es. E:\\',
+    wa_keys_bind_btn: 'Associa',
+    wa_keys_list_title: 'Chiavi associate',
+    wa_keys_list_empty: 'Nessuna chiave associata.',
+    wa_keys_list_btn: 'Aggiorna lista',
+    wa_auth_reg_title: 'Registrati',
+    wa_auth_reg_desc: 'Crea un account per usare le API di crittografia.',
+    wa_auth_reg_placeholder_user: 'Username (3-64 caratteri)',
+    wa_auth_reg_placeholder_pass: 'Password (min 8 caratteri)',
+    wa_auth_reg_btn: 'Registrati',
+    wa_auth_login_title: 'Login',
+    wa_auth_login_placeholder_user: 'Username',
+    wa_auth_login_placeholder_pass: 'Password',
+    wa_auth_login_btn: 'Accedi',
+    wa_auth_profile_title: 'Profilo',
+    wa_auth_profile_welcome: 'Benvenuto <strong id="waProfileName" style="color:var(--accent);"></strong> (ruolo: <span id="waProfileRole"></span>)',
+    wa_auth_profile_desc: 'Sei autenticato. Ora puoi usare tutte le funzioni di crittografia.',
+    wa_docs_title: 'API Reference',
+    wa_docs_desc: 'Specifica OpenAPI disponibile su',
+    wa_docs_th_method: 'Metodo',
+    wa_docs_th_endpoint: 'Endpoint',
+    wa_docs_th_desc: 'Descrizione',
+    wa_docs_register: 'Crea account',
+    wa_docs_login: 'Ottieni JWT',
+    wa_docs_refresh: 'Rinnova token',
+    wa_docs_encrypt: 'Crittografa testo',
+    wa_docs_decrypt: 'Decrittografa',
+    wa_docs_verify: 'Verifica formato',
+    wa_docs_encrypt_file: 'Crittografa file',
+    wa_docs_decrypt_file: 'Decrittografa file',
+    wa_docs_bind_usb: 'Associa chiave USB',
+    wa_docs_keys: 'Chiavi associate',
+    wa_docs_audit: 'Log audit (admin)',
+    wa_docs_health: 'Stato server',
+    wa_docs_openapi: 'Specifica OpenAPI',
+    footer_repo: 'Repository',
+    footer_dev: 'Sviluppatore',
+    footer_download: 'Download',
+    footer_faq: 'FAQ',
+    footer_wp: 'Whitepaper',
+    footer_tools: 'Tools',
+    footer_webapp: 'Web App',
+    footer_copyright: '\u00a9 2026 Roy Merlo &amp; <a href="https://github.com/Rp-ics" style="color:#93b9ff;text-decoration:none;">RPX</a> \u2014 open source, verificabile, sovrano'
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyTranslations(lang) {
+  const dict = i18n[lang] || i18n.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (!dict[key]) return;
+    if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.hasAttribute('placeholder')) {
+      el.placeholder = dict[key];
+    } else {
+      el.textContent = dict[key];
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key]) el.placeholder = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key]) el.innerHTML = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-glitch]').forEach(el => {
+    const key = el.getAttribute('data-i18n-glitch');
+    if (dict[key]) {
+      el.textContent = dict[key];
+      el.setAttribute('data-text', dict[key]);
+    }
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const key = el.getAttribute('data-i18n-alt');
+    if (dict[key]) el.alt = dict[key];
+  });
+  document.querySelectorAll('.lang-opt').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  applyTranslations(lang);
+}
+
+applyTranslations(currentLang);
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
