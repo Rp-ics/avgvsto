@@ -30,7 +30,7 @@ hex = "0.4"
 utoipa = { version = "5", features = ["uuid", "chrono"] }
 
 # Database (for FromRow impl)
-sqlx = { version = "0.8", features = ["postgres", "uuid", "chrono"] }
+sqlx = { version = "0.8", features = ["tls-rustls", "postgres", "uuid", "chrono"] }
 
 [dev-dependencies]
 serde_json.workspace = true
