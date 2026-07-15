@@ -4,7 +4,7 @@
 host = "127.0.0.1"
 port = 8443
 workers = 4
-allowed_origins = ["http://localhost:3000"]
+allowed_origins = ["http://localhost:3000", "https://avgvstousb.com", "https://www.avgvstousb.com"]
 max_body_size = 104857600
 request_timeout_secs = 120
 
