@@ -771,6 +771,7 @@ footer{
       <button class="webapp-tab" data-wa="keys" data-i18n="wa_tab_keys">USB Keys</button>
       <button class="webapp-tab" data-wa="auth" data-i18n="wa_tab_auth">Account</button>
       <button class="webapp-tab" data-wa="docs" data-i18n="wa_tab_docs">API</button>
+      <button class="webapp-tab" data-wa="swagger" data-i18n="wa_tab_swagger">Swagger</button>
     </div>
 
     <!-- Encrypt -->
@@ -925,6 +926,13 @@ footer{
           <tr><td>GET</td><td>/api/v1/health</td><td data-i18n="wa_docs_health">Server status</td></tr>
           <tr><td>GET</td><td>/api/v1/openapi.json</td><td data-i18n="wa_docs_openapi">OpenAPI spec</td></tr>
         </table>
+      </div>
+    </div>
+
+    <!-- Swagger UI -->
+    <div class="webapp-content" id="wa-swagger">
+      <div class="wa-card" style="max-width:100%;padding:0;">
+        <div id="swagger-ui"></div>
       </div>
     </div>
   </div>
@@ -1415,6 +1423,7 @@ const i18n = {
     wa_tab_keys: 'USB Keys',
     wa_tab_auth: 'Account',
     wa_tab_docs: 'API',
+    wa_tab_swagger: 'Swagger',
     wa_encrypt_title: 'Encrypt text',
     wa_encrypt_desc: 'Enter text to encrypt with AES-256-GCM or ChaCha20-Poly1305.',
     wa_encrypt_placeholder: 'Secret text...',
@@ -1661,6 +1670,7 @@ const i18n = {
     wa_tab_keys: 'Chiavi USB',
     wa_tab_auth: 'Account',
     wa_tab_docs: 'API',
+    wa_tab_swagger: 'Swagger',
     wa_encrypt_title: 'Crittografa testo',
     wa_encrypt_desc: 'Inserisci il testo da crittografare con AES-256-GCM o ChaCha20-Poly1305.',
     wa_encrypt_placeholder: 'Testo segreto...',
@@ -1787,7 +1797,29 @@ function switchLang(lang) {
 
 applyTranslations(currentLang);
 </script>
+<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let swaggerInit = false;
+  document.querySelectorAll('.webapp-tab[data-wa]').forEach(function(t) {
+    t.addEventListener('click', function() {
+      if (this.dataset.wa === 'swagger' && !swaggerInit) {
+        SwaggerUIBundle({
+          url: 'https://api.avgvstousb.com/api/v1/openapi.json',
+          dom_id: '#swagger-ui',
+          presets: [SwaggerUIBundle.presets.apis],
+          layout: 'BaseLayout',
+          deepLinking: true,
+          filter: true,
+        });
+        swaggerInit = true;
+      }
+    });
+  });
+});
+</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@200;300;400;600;800&display=swap" rel="stylesheet">
