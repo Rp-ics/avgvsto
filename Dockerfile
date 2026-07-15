@@ -13,6 +13,8 @@ FROM alpine:3.20
 RUN apk add --no-cache ca-certificates tzdata libgcc
 
 COPY --from=builder /app/target/release/avgvsto-server /usr/local/bin/avgvsto-server
+COPY config /app/config
+WORKDIR /app
 
 RUN addgroup -S avgvsto && adduser -S avgvsto -G avgvsto
 

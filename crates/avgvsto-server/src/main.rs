@@ -26,7 +26,11 @@ use crate::routes::AppState;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let config = AppConfig::load().unwrap_or_default();
+    let config = AppConfig::load().unwrap_or_else(|e| {
+        eprintln!("WARN: Config load failed (using defaults): {e}");
+        eprintln!("WARN: AVGVSTO_DATABASE__URL={:?}", std::env::var("AVGVSTO_DATABASE__URL").ok());
+        AppConfig::default()
+    });
 
     init_logging(&config);
 

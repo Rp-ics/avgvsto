@@ -103,10 +103,14 @@ pub fn create_router(state: AppState) -> Router {
             admin_middleware,
         ));
 
-    Router::new()
-        .route("/api/v1/openapi.json", get(openapi_json))
+    let api_routes = Router::new()
         .merge(public_routes)
         .merge(protected_routes)
-        .merge(admin_routes)
+        .merge(admin_routes);
+
+    Router::new()
+        .route("/", get(|| async { axum::response::Redirect::permanent("/api/v1/openapi.json") }))
+        .route("/api/v1/openapi.json", get(openapi_json))
+        .nest("/api/v1", api_routes)
         .with_state(state)
 }
